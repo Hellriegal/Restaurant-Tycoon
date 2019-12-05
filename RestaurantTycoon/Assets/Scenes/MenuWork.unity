@@ -387,7 +387,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 926791954}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2060010920}
+        m_MethodName: checkPrice
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Potato
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &926791954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +448,7 @@ GameObject:
   - component: {fileID: 1019415611}
   - component: {fileID: 1019415610}
   - component: {fileID: 1019415609}
+  - component: {fileID: 1019415612}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -524,6 +536,21 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1019415612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019415607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 151c36d3c24985b42ae45f187aa4ef26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredientPrices: {fileID: 0}
+  playerStats: {fileID: 0}
+  inventoryData: {fileID: 0}
 --- !u!1 &1036880107
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,6 +626,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2060010919}
+  - component: {fileID: 2060010920}
   m_Layer: 0
   m_Name: Menu
   m_TagString: Untagged
@@ -621,3 +649,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2060010920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060010918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 151c36d3c24985b42ae45f187aa4ef26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredientPrices: {fileID: 11400000, guid: 48e6d1ec0b479bb48a1bfc8ba70e261a, type: 2}
+  playerStats: {fileID: 11400000, guid: c90369c646e55a248b20ad2c47460dc0, type: 2}
+  inventoryData: {fileID: 11400000, guid: 9b2d15e327a298c41ae64a9db7d1b326, type: 2}

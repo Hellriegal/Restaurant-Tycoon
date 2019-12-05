@@ -44,9 +44,15 @@
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
-  <ItemGroup>     <Compile Include="Assets\Scriptable Objects\Base.cs" />
+  <ItemGroup>     <Compile Include="Assets\Scriptable Objects\Scripts\IngredientPrices.cs" />
+     <Compile Include="Assets\Scriptable Objects\Scripts\InventoryData.cs" />
+     <Compile Include="Assets\Scriptable Objects\Scripts\PlayerStats.cs" />
+     <Compile Include="Assets\Scripts\Menu\Purchase.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Git/Restaurant Tycoon/RestaurantTycoon/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.2D.PixelPerfect.Editor">
+ <HintPath>C:/Git/Restaurant Tycoon/RestaurantTycoon/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>C:/Git/Restaurant Tycoon/RestaurantTycoon/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
@@ -72,17 +78,14 @@
  <Reference Include="Unity.2D.Tilemap.Editor">
  <HintPath>C:/Git/Restaurant Tycoon/RestaurantTycoon/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.2D.PixelPerfect">
+ <HintPath>C:/Git/Restaurant Tycoon/RestaurantTycoon/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>C:/Git/Restaurant Tycoon/RestaurantTycoon/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Git/Restaurant Tycoon/RestaurantTycoon/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.PixelPerfect.Editor">
- <HintPath>C:/Git/Restaurant Tycoon/RestaurantTycoon/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.PixelPerfect">
- <HintPath>C:/Git/Restaurant Tycoon/RestaurantTycoon/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
