@@ -9,6 +9,9 @@ public class LayoutManager : MonoBehaviour
     public MenuItem basil;
     public MenuItem potato;
     Transform myTransform;
+    public MenuItem[] items;
+    int counter = 0;
+    int pageNumber = 0;
 
     void Start()
     {
@@ -16,18 +19,26 @@ public class LayoutManager : MonoBehaviour
         assignItem();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //nextPage();
-        
+        nextPage();
     }
 
     void assignItem()
     {
         foreach (Transform child in myTransform)
         {
-            Debug.Log(child.GetSiblingIndex());
+            int itemIndex = counter+(pageNumber*18);
+            if (itemIndex > 24)
+            {
+                itemIndex = 24;
+            }
+            child.gameObject.GetComponent<getItemInfo>().menuItem = items[itemIndex];
+            counter++;
+            getItemInfo itemInfo = child.gameObject.GetComponent<getItemInfo>();
+            PurchasePass purchasePass = child.gameObject.GetComponent<PurchasePass>();
+            itemInfo.Start();
+            purchasePass.getItemName();
         }
     }
 
@@ -35,18 +46,21 @@ public class LayoutManager : MonoBehaviour
     {
         if (Input.GetKey("left"))
         {
-            getItemInfo itemInfo = o11.GetComponent<getItemInfo>();
-            PurchasePass purchasePass = o11.GetComponent<PurchasePass>();
-            itemInfo.menuItem = basil;
-            itemInfo.Start();
-            purchasePass.getItemName();
+            counter = 0;
+            if (pageNumber > 0)
+            {
+                pageNumber--;
+            }
+            assignItem();
         }
         if (Input.GetKey("right"))
         {
-            getItemInfo itemInfo = o11.GetComponent<getItemInfo>();
-            PurchasePass purchasePass = o11.GetComponent<PurchasePass>();
-            itemInfo.menuItem = potato;
-            itemInfo.Start();
+            counter = 0;
+            if (pageNumber < 1)
+            {
+                pageNumber++;
+            }
+            assignItem();
         }
     }
 }
