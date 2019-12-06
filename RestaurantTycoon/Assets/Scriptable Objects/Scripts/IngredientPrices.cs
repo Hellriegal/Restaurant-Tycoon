@@ -5,7 +5,7 @@ public class IngredientPrices : ScriptableObject
 {
     public int Basil;
     public int Bread;
-    public int Breadcrumbs;
+    public int BreadCrumbs;
     public int Butter;
     public int Cabanossi;
     public int Cheese;

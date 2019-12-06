@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Cheese
   DisplayName: Cheese
-  image: {fileID: 7781682652552636025, guid: 211c75e9a861c7e4994195b5dd4526fa, type: 3}
+  image: {fileID: -3147275107796605358, guid: 211c75e9a861c7e4994195b5dd4526fa, type: 3}
   id: 0
