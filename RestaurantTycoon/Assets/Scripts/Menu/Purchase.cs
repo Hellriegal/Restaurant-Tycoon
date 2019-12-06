@@ -33,6 +33,13 @@ public class Purchase : MonoBehaviour
                         playerStats.Money = playerStats.Money - ingredientPrices.Potato;
                     };
                     break;
+                    case "Basil":
+                    if (ingredientPrices.Basil < playerStats.Money)
+                    {
+                        inventoryData.Basil++;
+                        playerStats.Money = playerStats.Money - ingredientPrices.Basil;
+                    };
+                    break;
             }
             
         }

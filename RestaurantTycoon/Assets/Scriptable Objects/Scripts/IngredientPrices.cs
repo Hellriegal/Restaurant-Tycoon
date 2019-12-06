@@ -28,10 +28,5 @@ public class IngredientPrices : ScriptableObject
     public int TeaLeaves;
     public float Tomato;
     public int TomatoBase;
-
-    public void pricePass()
-    {
-        
-    }
 }
 

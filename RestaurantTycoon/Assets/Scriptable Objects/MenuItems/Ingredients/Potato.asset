@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Potato
   m_EditorClassIdentifier: 
   ItemName: Potato
+  DisplayName: Potato
   image: {fileID: -7576874432042752839, guid: 211c75e9a861c7e4994195b5dd4526fa, type: 3}
+  id: 0
