@@ -10,6 +10,8 @@ public class getItemInfo : MonoBehaviour
     public string itemName;
     public Image image;
     public Text noMoneyText;
+    public Text price;
+    public float priceValue;
     Button button;
 
     public void Start()
@@ -17,6 +19,8 @@ public class getItemInfo : MonoBehaviour
         displayName.text = menuItem.DisplayName;
         itemName = menuItem.ItemName;
         image.sprite = menuItem.image;
+        priceValue = menuItem.price;
+        price.text = "$ " + priceValue.ToString();
         button = GetComponent<Button>();
     }
 

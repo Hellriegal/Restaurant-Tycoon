@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Reflection;
+using System;
 
 [CreateAssetMenu(fileName = "Inventory Data", menuName = "Scriptable Objects/Inventory Data", order = 1)]
 public class InventoryData : ScriptableObject
@@ -26,6 +28,13 @@ public class InventoryData : ScriptableObject
     public int Steak;
     public int Sugar;
     public int TeaLeaves;
-    public float Tomato = 3.5f;
+    public float Tomato;
     public int TomatoBase;
+
+    public void updateCount(string itemName)
+    {
+        Type myClassType = this.GetType();
+        FieldInfo myFieldInfo = myClassType.GetField(itemName);
+        myFieldInfo.SetValue(this, Convert.ToInt32(myFieldInfo.GetValue(this)) + 1);
+    }
 }

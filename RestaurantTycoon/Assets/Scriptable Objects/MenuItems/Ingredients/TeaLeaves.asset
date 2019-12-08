@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3161b48c1757f44bb871c1cf13e9a72, type: 3}
+  m_Name: TeaLeaves
+  m_EditorClassIdentifier: 
+  ItemName: TeaLeaves
+  DisplayName: Tea Leaves
+  image: {fileID: -2804774553036113763, guid: 211c75e9a861c7e4994195b5dd4526fa, type: 3}
+  price: 3

@@ -12,24 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f576da4a9da80a44a56149a6c5c2f7c, type: 3}
   m_Name: Inventory Data
   m_EditorClassIdentifier: 
-  Basil: 0
-  Bread: 0
-  Breadcrumbs: 0
-  Butter: 0
-  Cabanossi: 0
+  Basil: 2
+  Bread: 124
+  BreadCrumbs: 124
+  Butter: 124
+  Cabanossi: 124
   Cheese: 0
   Chicken: 0
   CoffeeBeans: 0
   Corn: 0
   Custard: 0
   Dough: 0
-  Garlic: 0
-  Ham: 0
-  IceCream: 0
-  Lemonade: 0
-  Peas: 0
-  Pepperoni: 0
-  Pineapple: 0
+  Garlic: 1
+  Ham: 1
+  IceCream: 1
+  Lemonade: 1
+  Peas: 1
+  Pepperoni: 2
+  Pineapple: 1
   Potato: 0
   Pumpkin: 0
   Steak: 0

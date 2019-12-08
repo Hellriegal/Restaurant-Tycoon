@@ -7,5 +7,5 @@ public class MenuItem : ScriptableObject
     public string ItemName;
     public string DisplayName;
     public Sprite image;
-    public int id;
+    public float price;
 }

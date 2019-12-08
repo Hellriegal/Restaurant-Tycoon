@@ -32,6 +32,6 @@ public class PurchasePass : MonoBehaviour
 
     public void pass()
     {
-        purchase.checkPrice(itemNameText);
+        purchase.checkPrice(itemInfo.priceValue, itemInfo.itemName);
     }
 }
