@@ -7,7 +7,9 @@ public class MenuButton : MonoBehaviour
 {
     bool isActive = false;
     public GameObject objectToEnable;
+    public LayoutManager layout;
     Button thisButton;
+    public string arrayName;
 
     void Start()
     {
@@ -18,6 +20,7 @@ public class MenuButton : MonoBehaviour
 
     public void enable()
     {
+        layout.assignItem(arrayName);
         if (isActive == false)
         {
             objectToEnable.SetActive(true);
@@ -26,6 +29,7 @@ public class MenuButton : MonoBehaviour
         else
         {
             objectToEnable.SetActive(false);
+            layout.clearObjectAssign();
             isActive = false;
         }
     }

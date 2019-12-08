@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class getItemInfo : MonoBehaviour
 {
     public MenuItem menuItem;
+    public MealItem mealItem;
     public Text displayName;
     public string itemName;
     public Image image;
@@ -16,10 +17,20 @@ public class getItemInfo : MonoBehaviour
 
     public void Start()
     {
-        displayName.text = menuItem.DisplayName;
+        if (menuItem)
+        {
+            displayName.text = menuItem.DisplayName;
         itemName = menuItem.ItemName;
         image.sprite = menuItem.image;
         priceValue = menuItem.price;
+        }
+        if (mealItem)
+        {
+            displayName.text = mealItem.DisplayName;
+        itemName = mealItem.ItemName;
+        image.sprite = mealItem.image;
+        priceValue = mealItem.price;
+        }
         price.text = "$ " + priceValue.ToString();
         button = GetComponent<Button>();
     }

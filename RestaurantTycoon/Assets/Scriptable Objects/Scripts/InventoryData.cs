@@ -35,6 +35,7 @@ public class InventoryData : ScriptableObject
     {
         Type myClassType = this.GetType();
         FieldInfo myFieldInfo = myClassType.GetField(itemName);
+        Debug.Log(myFieldInfo);
         myFieldInfo.SetValue(this, Convert.ToInt32(myFieldInfo.GetValue(this)) + 1);
     }
 }

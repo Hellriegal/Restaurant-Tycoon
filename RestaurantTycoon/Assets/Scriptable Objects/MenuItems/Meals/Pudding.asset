@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7064c02cbff29547aedff54b18544af, type: 3}
+  m_Name: Pudding
+  m_EditorClassIdentifier: 
+  ItemName: Pudding
+  DisplayName: Pudding
+  image: {fileID: 1627200482667331418, guid: 48ca273b79738df4ba9d387f045aee64, type: 3}
+  price: 7

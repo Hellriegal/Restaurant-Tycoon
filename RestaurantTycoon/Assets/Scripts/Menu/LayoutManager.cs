@@ -5,20 +5,20 @@ using System;
 
 public class LayoutManager : MonoBehaviour
 {
-    public GameObject canvas;
     Transform myTransform;
     public MenuItem[] IngredientItems;
+    public MealItem[] MealItems;
     int counter = 0;
     int pageNumber = 0;
     int numberOfPages;
     public PlayerStats stats;
-    public GameObject IngredientMenu;
+    public GameObject menu6x3;
+    string menuType;
 
     void Start()
     {   
-        myTransform = canvas.GetComponent<Transform>();
-        assignItem();
-        getNumberOfPages(IngredientItems.Length);
+        myTransform = menu6x3.GetComponent<Transform>();
+        assignItem(menuType);
     }
 
     void Update()
@@ -28,13 +28,27 @@ public class LayoutManager : MonoBehaviour
         pageNumberReset();
     }
 
+    public void clearObjectAssign()
+    {
+        foreach (Transform child in myTransform)
+            {
+                child.gameObject.GetComponent<getItemInfo>().menuItem = null;
+                child.gameObject.GetComponent<getItemInfo>().mealItem = null;
+            }
+    }
+
+    public void getMenuType(string menuTypeString)
+    {
+        menuType = menuTypeString;
+    }
+
     public void pageNumberReset()
     {
-        if (IngredientMenu.activeInHierarchy == false)
+        if (menu6x3.activeInHierarchy == false)
         {
             pageNumber = 0;
             counter = 0;
-            assignItem();
+            assignItem(menuType);
         }
     }
 
@@ -61,22 +75,48 @@ public class LayoutManager : MonoBehaviour
         numberOfPages = Mathf.CeilToInt(totalItems/18);
     }
 
-    void assignItem()
+    public void assignItem(string arrayName)
     {
-        foreach (Transform child in myTransform)
+        switch (arrayName)
         {
-            int itemIndex = counter+(pageNumber*18);
-            if (itemIndex > IngredientItems.Length-1 || itemIndex == IngredientItems.Length - 1)
+            case "IngredientItems":
+            getNumberOfPages(IngredientItems.Length);
+            foreach (Transform child in myTransform)
             {
-                itemIndex = -1;
+               int itemIndex = counter+(pageNumber*18);
+               if (itemIndex > IngredientItems.Length-1 || itemIndex == IngredientItems.Length - 1)
+                   {
+                        itemIndex = -1;
+                   }
+                child.gameObject.GetComponent<getItemInfo>().menuItem = IngredientItems[itemIndex+1];
+                counter++;
+                getItemInfo itemInfo = child.gameObject.GetComponent<getItemInfo>();
+                PurchasePass purchasePass = child.gameObject.GetComponent<PurchasePass>();
+                itemInfo.Start();
+                purchasePass.getItemName();
+                
             }
-            child.gameObject.GetComponent<getItemInfo>().menuItem = IngredientItems[itemIndex+1];
-            counter++;
-            getItemInfo itemInfo = child.gameObject.GetComponent<getItemInfo>();
-            PurchasePass purchasePass = child.gameObject.GetComponent<PurchasePass>();
-            itemInfo.Start();
-            purchasePass.getItemName();
+            break;
+            case "MealItems":
+            getNumberOfPages(MealItems.Length);
+            foreach (Transform child in myTransform)
+            {
+               int itemIndex = counter+(pageNumber*18);
+               if (itemIndex > MealItems.Length-1 || itemIndex == MealItems.Length - 1)
+                   {
+                        itemIndex = -1;
+                   }
+                child.gameObject.GetComponent<getItemInfo>().mealItem = MealItems[itemIndex+1];
+                counter++;
+                getItemInfo itemInfo = child.gameObject.GetComponent<getItemInfo>();
+                PurchasePass purchasePass = child.gameObject.GetComponent<PurchasePass>();
+                itemInfo.Start();
+                purchasePass.getItemName();
+                
+            }
+            break;
         }
+        
     }
 
     void nextPage()
@@ -87,17 +127,21 @@ public class LayoutManager : MonoBehaviour
             if (pageNumber > 0)
             {
                 pageNumber--;
+                assignItem(menuType);
             }
-            assignItem();
         }
         if (Input.GetKey("right"))
         {
             counter = 0;
-            if (pageNumber < numberOfPages)
+            if (pageNumber < numberOfPages+1)
             {
                 pageNumber++;
+                assignItem(menuType);
             }
-            assignItem();
+        }
+        if (pageNumber <= 0)
+        {
+            pageNumber = 1;
         }
     }
 }
