@@ -9,6 +9,7 @@ public class getItemInfo : MonoBehaviour
     public Text displayName;
     public string itemName;
     public Image image;
+    public Text noMoneyText;
     Button button;
 
     public void Start()
@@ -22,6 +23,23 @@ public class getItemInfo : MonoBehaviour
     public void Update()
     {
         lockButton();
+    }
+
+    public void noMoney(bool ifTrue)
+    {
+        if (itemName != "blank")
+        {
+            if (ifTrue == true)
+            {
+                noMoneyText.enabled = true;
+                button.interactable = false;
+            }
+            else
+            {
+                noMoneyText.enabled = false;
+                button.interactable = true;
+            }   
+        }
     }
 
     public void lockButton()

@@ -15,17 +15,19 @@ public class PurchasePass : MonoBehaviour
         thisButton = GetComponent<Button>();
         itemInfo = GetComponent<getItemInfo>();
         getItemName();
-        thisButton.onClick.AddListener(selfReference);
+        thisButton.onClick.AddListener(pass);
     }
 
-    void selfReference()
+    public void noMoney(bool ifTrue)
     {
-        pass();
+        if (itemInfo)
+            itemInfo.noMoney(ifTrue);
     }
 
     public void getItemName()
     {
-        itemNameText = itemInfo.itemName;
+        if (itemInfo)
+            itemNameText = itemInfo.itemName;
     }
 
     public void pass()

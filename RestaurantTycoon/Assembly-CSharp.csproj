@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scriptable Objects\Scripts\PlayerStats.cs" />
      <Compile Include="Assets\Scripts\Menu\AssignButtonInfo.cs" />
      <Compile Include="Assets\Scripts\Menu\LayoutManager.cs" />
+     <Compile Include="Assets\Scripts\Menu\MenuButton.cs" />
      <Compile Include="Assets\Scripts\Menu\Purchase.cs" />
      <Compile Include="Assets\Scripts\Menu\PurchasePass.cs" />
      <Compile Include="Assets\Scripts\Menu\getItemInfo.cs" />

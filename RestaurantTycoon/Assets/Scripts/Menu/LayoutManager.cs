@@ -7,21 +7,53 @@ public class LayoutManager : MonoBehaviour
 {
     public GameObject canvas;
     Transform myTransform;
-    public MenuItem[] items;
+    public MenuItem[] IngredientItems;
     int counter = 0;
     int pageNumber = 0;
     int numberOfPages;
+    public PlayerStats stats;
+    public GameObject IngredientMenu;
 
     void Start()
     {   
         myTransform = canvas.GetComponent<Transform>();
         assignItem();
-        getNumberOfPages(items.Length);
+        getNumberOfPages(IngredientItems.Length);
     }
 
     void Update()
     {
+        noMoney();
         nextPage();
+        pageNumberReset();
+    }
+
+    public void pageNumberReset()
+    {
+        if (IngredientMenu.activeInHierarchy == false)
+        {
+            pageNumber = 0;
+            counter = 0;
+            assignItem();
+        }
+    }
+
+    void noMoney()
+    {
+        if (stats.Money <= 0)
+        {
+            foreach (Transform child in myTransform)
+            {
+                child.gameObject.GetComponent<PurchasePass>().noMoney(true);
+            }
+        }
+        else if (stats.Money > 0)
+        {
+            foreach (Transform child in myTransform)
+            {
+                child.gameObject.GetComponent<PurchasePass>().noMoney(false);
+            }
+        }
     }
 
     void getNumberOfPages(int totalItems)
@@ -34,11 +66,11 @@ public class LayoutManager : MonoBehaviour
         foreach (Transform child in myTransform)
         {
             int itemIndex = counter+(pageNumber*18);
-            if (itemIndex > items.Length-1 || itemIndex == items.Length - 1)
+            if (itemIndex > IngredientItems.Length-1 || itemIndex == IngredientItems.Length - 1)
             {
                 itemIndex = -1;
             }
-            child.gameObject.GetComponent<getItemInfo>().menuItem = items[itemIndex+1];
+            child.gameObject.GetComponent<getItemInfo>().menuItem = IngredientItems[itemIndex+1];
             counter++;
             getItemInfo itemInfo = child.gameObject.GetComponent<getItemInfo>();
             PurchasePass purchasePass = child.gameObject.GetComponent<PurchasePass>();

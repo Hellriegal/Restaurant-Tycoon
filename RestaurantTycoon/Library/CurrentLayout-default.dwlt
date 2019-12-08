@@ -135,8 +135,8 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 679, y: 492}
-  m_MaxSize: {x: 14002, y: 14042}
+  m_MinSize: {x: 679, y: 342}
+  m_MaxSize: {x: 12004, y: 8042}
   vertical: 0
   controlID: 58
 --- !u!114 &7
@@ -160,8 +160,8 @@ MonoBehaviour:
     y: 0
     width: 1557
     height: 947
-  m_MinSize: {x: 403, y: 492}
-  m_MaxSize: {x: 10001, y: 14042}
+  m_MinSize: {x: 403, y: 342}
+  m_MaxSize: {x: 8003, y: 8042}
   vertical: 1
   controlID: 63
 --- !u!114 &8
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -264,14 +264,14 @@ MonoBehaviour:
     y: 675
     width: 1557
     height: 272
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 19}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 19}
   - {fileID: 20}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -416,9 +416,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 72340000
-      m_LastClickedID: 0
-      m_ExpandedIDs: 72fbffff4c340000
+      m_SelectedIDs: 4a340000
+      m_LastClickedID: 13386
+      m_ExpandedIDs: b0b5ffff8ef9ffff72fbffff4a340000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -478,9 +478,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -9.444801, y: -10.974046, z: 8.9375}
+    m_Target: {x: 10.169552, y: -5.8549743, z: -304}
     speed: 2
-    m_Value: {x: -9.444801, y: -10.974046, z: 8.9375}
+    m_Value: {x: 10.169552, y: -5.8549743, z: -304}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -530,9 +530,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 252.15363
+    m_Target: 242.02226
     speed: 2
-    m_Value: 252.15363
+    m_Value: 242.02226
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -675,7 +675,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 13388
+  m_LastSelectedObjectID: 13386
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -715,20 +715,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scriptable Objects
+    - Assets/Scripts/Menu
   m_ViewMode: 1
   m_StartGridSize: 68
   m_LastFolders:
-  - Assets/Scriptable Objects
+  - Assets/Scripts/Menu
   m_LastFoldersGridSize: 68
   m_LastProjectPath: D:\Git\Restaurant-Tycoon\RestaurantTycoon
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 45}
-    m_SelectedIDs: 34350000
-    m_LastClickedID: 13620
-    m_ExpandedIDs: 00000000283500002e3500003435000036350000383500003e35000000ca9a3b
+    scrollPos: {x: 0, y: 95}
+    m_SelectedIDs: 44350000
+    m_LastClickedID: 13636
+    m_ExpandedIDs: 000000002c3500002e3500003035000032350000343500003a350000463500004835000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -756,7 +756,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000028350000
+    m_ExpandedIDs: 000000002c3500002e350000303500003235000034350000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -781,10 +781,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 66b5ffff
+    m_LastClickedInstanceID: -19098
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000724200005c420000304200001a2d0000c62a0000642a0000dc2c0000c22a0000d02c0000f42b00001e4c0000565c0000a02f00004694000054370000026a0000582a00006cbe000004400000de2e00001a340000e22b0000007a00004e5c00000c8b0000d0720000a07b0000b030000092500200e447000088561300aca8000046460200d64b000092350000403f000074360000ba5c08004832000034350000642d000084340000d63e000060330000ee2e00001e3f00008c310000d22d0000d62e0000be380000a0340000e43000007a300000f4300000fa30000000000000f4330000
+    m_ExpandedInstanceIDs: c6230000724200005c420000304200001a2d0000c62a0000642a0000dc2c0000c22a0000d02c0000f42b00001e4c0000565c0000a02f00004694000054370000026a0000582a00006cbe000004400000de2e00001a340000e22b0000007a00004e5c00000c8b0000d0720000a07b0000b030000092500200e447000088561300aca8000046460200d64b000092350000403f000074360000ba5c08004832000034350000642d000084340000d63e000060330000ee2e00001e3f00008c310000d22d0000d62e0000be380000a0340000e43000007a300000f4300000fa30000000000000f4330000da340000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
