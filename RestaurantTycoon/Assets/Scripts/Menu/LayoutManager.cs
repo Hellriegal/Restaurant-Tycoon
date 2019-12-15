@@ -5,53 +5,63 @@ using System;
 
 public class LayoutManager : MonoBehaviour
 {
-    public GameObject canvas;
     Transform myTransform;
-    public MenuItem[] IngredientItems;
+    public List<MenuItem> Items;
     int counter = 0;
     int pageNumber = 0;
     int numberOfPages;
     public PlayerStats stats;
-    public GameObject IngredientMenu;
+    public GameObject Menu;
+    [SerializeField]
+    bool meal = false;
 
-    void Start()
-    {   
-        myTransform = canvas.GetComponent<Transform>();
+    public void Start()
+    {
+        myTransform = GetComponent<Transform>();
         assignItem();
-        getNumberOfPages(IngredientItems.Length);
+        getNumberOfPages(Items.Count);
     }
 
     void Update()
     {
         noMoney();
         nextPage();
-        pageNumberReset();
+        activeObject();
+    }
+
+    void activeObject()
+    {
+        if (Menu.activeInHierarchy == false)
+        {
+            pageNumberReset();
+        }
+
     }
 
     public void pageNumberReset()
     {
-        if (IngredientMenu.activeInHierarchy == false)
-        {
-            pageNumber = 0;
-            counter = 0;
-            assignItem();
-        }
+        pageNumber = 0;
+        counter = 0;
+        assignItem();
     }
 
     void noMoney()
     {
-        if (stats.Money <= 0)
+        if (meal == false)
         {
-            foreach (Transform child in myTransform)
+            if (stats.Money <= 0)
             {
-                child.gameObject.GetComponent<PurchasePass>().noMoney(true);
+                foreach (Transform child in myTransform)
+                {
+                    child.gameObject.GetComponent<PurchasePass>().noMoney(true);
+                }
             }
-        }
-        else if (stats.Money > 0)
-        {
-            foreach (Transform child in myTransform)
+            else if (stats.Money > 0)
             {
-                child.gameObject.GetComponent<PurchasePass>().noMoney(false);
+                foreach (Transform child in myTransform)
+                {
+                    child.gameObject.GetComponent<PurchasePass>().noMoney(false);
+                }
             }
         }
     }
@@ -66,16 +76,23 @@ public class LayoutManager : MonoBehaviour
         foreach (Transform child in myTransform)
         {
             int itemIndex = counter+(pageNumber*18);
-            if (itemIndex > IngredientItems.Length-1 || itemIndex == IngredientItems.Length - 1)
+            getItemInfo info;
+            info = child.gameObject.GetComponent<getItemInfo>();
+            if (info)
             {
-                itemIndex = -1;
+                if (itemIndex > Items.Count-1 || itemIndex == Items.Count - 1)
+                {
+                    itemIndex = -1;
+                }
+                info.menuItem = Items[itemIndex+1];
+                counter++;
+                getItemInfo itemInfo = child.gameObject.GetComponent<getItemInfo>();
+                itemInfo.Start();
+                if (meal == false)
+                {
+                    PurchasePass purchasePass = child.gameObject.GetComponent<PurchasePass>();                        purchasePass.getItemName();
+                }
             }
-            child.gameObject.GetComponent<getItemInfo>().menuItem = IngredientItems[itemIndex+1];
-            counter++;
-            getItemInfo itemInfo = child.gameObject.GetComponent<getItemInfo>();
-            PurchasePass purchasePass = child.gameObject.GetComponent<PurchasePass>();
-            itemInfo.Start();
-            purchasePass.getItemName();
         }
     }
 

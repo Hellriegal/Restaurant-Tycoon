@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class MenuButton : MonoBehaviour
 {
-    bool isActive = false;
     public GameObject objectToEnable;
     Button thisButton;
+    public enableChild ParentClass;
+    [SerializeField]
+    int menuReferenceNo = 0;
 
     void Start()
     {
@@ -18,15 +20,13 @@ public class MenuButton : MonoBehaviour
 
     public void enable()
     {
-        if (isActive == false)
+        if (!objectToEnable.activeSelf)
         {
-            objectToEnable.SetActive(true);
-            isActive = true;
+            ParentClass.GetComponent<enableChild>().enable(menuReferenceNo);
         }
         else
         {
-            objectToEnable.SetActive(false);
-            isActive = false;
+            ParentClass.GetComponent<enableChild>().disable();
         }
     }
 }

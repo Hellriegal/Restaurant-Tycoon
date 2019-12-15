@@ -27,7 +27,7 @@ public class Purchase : MonoBehaviour
 
     public void checkPrice(float itemPrice, string itemName)
     {
-        if (playerStats.Money > 0 & itemPrice != null)
+        if (playerStats.Money > 0 & itemName != null)
         {
             inventoryData.updateCount(itemName);
             playerStats.Money = playerStats.Money - itemPrice;

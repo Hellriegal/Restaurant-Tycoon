@@ -16,12 +16,15 @@ public class getItemInfo : MonoBehaviour
 
     public void Start()
     {
+        if (menuItem)
+        {
         displayName.text = menuItem.DisplayName;
         itemName = menuItem.ItemName;
         image.sprite = menuItem.image;
         priceValue = menuItem.price;
         price.text = "$ " + priceValue.ToString();
         button = GetComponent<Button>();
+        }
     }
 
     public void Update()
@@ -31,7 +34,7 @@ public class getItemInfo : MonoBehaviour
 
     public void noMoney(bool ifTrue)
     {
-        if (itemName != "blank")
+        if (itemName != "blank" & menuItem & noMoneyText)
         {
             if (ifTrue == true)
             {
@@ -48,11 +51,11 @@ public class getItemInfo : MonoBehaviour
 
     public void lockButton()
     {
-        if (itemName == "blank")
+        if (itemName == "blank" & button)
         {
             button.interactable = false;
         }
-        else
+        else if (button)
         {
             button.interactable = true;
         }
