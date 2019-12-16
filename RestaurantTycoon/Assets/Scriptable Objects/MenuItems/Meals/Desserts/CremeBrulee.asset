@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3161b48c1757f44bb871c1cf13e9a72, type: 3}
+  m_Name: CremeBrulee
+  m_EditorClassIdentifier: 
+  ItemName: CremeBrulee
+  DisplayName: "Cr\xE8me Br\xFBl\xE9e"
+  image: {fileID: -8490659678494052313, guid: 28b4228e73cded54b81ec2d16cd5e039, type: 3}
+  price: 9
+  menuType: Desserts

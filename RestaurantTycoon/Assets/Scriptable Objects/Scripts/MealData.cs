@@ -6,18 +6,63 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "Meal Data", menuName = "Scriptable Objects/Meal Data", order = 1)]
 public class MealData : ScriptableObject
 {
-    public List<MenuItem> items;
+    public List<MenuItem> Entrees, Mains, Desserts, Drinks;
 
-    public void addToList(MenuItem itemToAdd)
+    public void addToList(MenuItem itemToAdd, string ListName)
     {
-        if (items.Contains(itemToAdd) == false)
+        switch(ListName)
         {
-            items.Add(itemToAdd);
+            case "Entrees":
+            {
+                if (Entrees.Contains(itemToAdd) == false)
+                {
+                    Entrees.Add(itemToAdd);
+                }
+                else
+                {
+                    Entrees.Remove(itemToAdd);
+                }
+            }
+            break;
+            case "Mains":
+            {
+                if (Mains.Contains(itemToAdd) == false)
+                {
+                    Mains.Add(itemToAdd);
+                }
+                else
+                {
+                    Mains.Remove(itemToAdd);
+                }
+            }
+            break;
+            case "Desserts":
+            {
+                if (Desserts.Contains(itemToAdd) == false)
+                {
+                    Desserts.Add(itemToAdd);
+                }
+                else
+                {
+                    Desserts.Remove(itemToAdd);
+                }
+            }
+            break;
+            case "Drinks":
+            {
+                if (Drinks.Contains(itemToAdd) == false)
+                {
+                    Drinks.Add(itemToAdd);
+                }
+                else
+                {
+                    Drinks.Remove(itemToAdd);
+                }
+            }
+            break;
+            
         }
-        else
-        {
-            items.Remove(itemToAdd);
-        }
+        
     }
 }
 

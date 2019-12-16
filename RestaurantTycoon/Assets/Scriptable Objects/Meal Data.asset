@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad513c95c9a0aba4a9dacfe5b8f9a2b1, type: 3}
   m_Name: Meal Data
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 11400000, guid: cf521112d41a60b479771c1f70672239, type: 2}
-  - {fileID: 11400000, guid: 062d87f8e69a50340ab37f770e30bdcd, type: 2}
-  - {fileID: 11400000, guid: 0163b4e697bfcd6498f694afa0d131f4, type: 2}
+  Entrees:
+  - {fileID: 11400000, guid: 020059b5dae7e7a42ac86711bd8b17fe, type: 2}
+  Mains:
+  - {fileID: 11400000, guid: 020059b5dae7e7a42ac86711bd8b17fe, type: 2}
+  Desserts:
+  - {fileID: 11400000, guid: 020059b5dae7e7a42ac86711bd8b17fe, type: 2}
+  Drinks:
+  - {fileID: 11400000, guid: 020059b5dae7e7a42ac86711bd8b17fe, type: 2}

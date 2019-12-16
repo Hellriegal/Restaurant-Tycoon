@@ -8,7 +8,8 @@ public class MealScript : MonoBehaviour
     Button thisButton;
     public MealData data;
     MenuItem menuItem;
-    public LayoutListUpdate layoutListUpdate;
+    public SelectedMealUpdate selectedMealUpdate;
+
 
     public void Start()
     {
@@ -24,7 +25,7 @@ public class MealScript : MonoBehaviour
     void assign()
     {
         menuItem = GetComponent<getItemInfo>().menuItem;
-        data.addToList(menuItem);
-        layoutListUpdate.updateList(menuItem);
+        data.addToList(menuItem, menuItem.menuType);
+        selectedMealUpdate.updateList(menuItem.menuType);
     }
 }

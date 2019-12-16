@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3161b48c1757f44bb871c1cf13e9a72, type: 3}
+  m_Name: IceCream
+  m_EditorClassIdentifier: 
+  ItemName: IceCreamMeal
+  DisplayName: Ice Cream
+  image: {fileID: -5647573645936620529, guid: 28b4228e73cded54b81ec2d16cd5e039, type: 3}
+  price: 4
+  menuType: Desserts

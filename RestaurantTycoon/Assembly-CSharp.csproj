@@ -52,12 +52,15 @@
      <Compile Include="Assets\Scriptable Objects\Scripts\MenuLayout.cs" />
      <Compile Include="Assets\Scriptable Objects\Scripts\PlayerStats.cs" />
      <Compile Include="Assets\Scripts\Menu\AssignButtonInfo.cs" />
+     <Compile Include="Assets\Scripts\Menu\Category.cs" />
+     <Compile Include="Assets\Scripts\Menu\CategoryFunction.cs" />
      <Compile Include="Assets\Scripts\Menu\LayoutListUpdate.cs" />
      <Compile Include="Assets\Scripts\Menu\LayoutManager.cs" />
      <Compile Include="Assets\Scripts\Menu\MealScript.cs" />
      <Compile Include="Assets\Scripts\Menu\MenuButton.cs" />
      <Compile Include="Assets\Scripts\Menu\Purchase.cs" />
      <Compile Include="Assets\Scripts\Menu\PurchasePass.cs" />
+     <Compile Include="Assets\Scripts\Menu\SelectedMealUpdate.cs" />
      <Compile Include="Assets\Scripts\Menu\enableChild.cs" />
      <Compile Include="Assets\Scripts\Menu\getItemInfo.cs" />
  <Reference Include="Unity.Timeline.Editor">
