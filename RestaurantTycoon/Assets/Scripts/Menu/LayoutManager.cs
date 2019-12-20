@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class LayoutManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class LayoutManager : MonoBehaviour
     public GameObject Menu;
     [SerializeField]
     bool meal = false;
+    int buttonCounter = 0;
 
     public void Start()
     {
@@ -68,14 +70,22 @@ public class LayoutManager : MonoBehaviour
 
     void getNumberOfPages(int totalItems)
     {
-        numberOfPages = Mathf.CeilToInt(totalItems/18);
+        foreach (Transform child in myTransform)
+        {
+            Button button = child.gameObject.GetComponent<Button>();
+            if (button)
+            {
+                buttonCounter++;
+            }
+        }
+        numberOfPages = Mathf.CeilToInt(totalItems/buttonCounter);
     }
 
     void assignItem()
     {
         foreach (Transform child in myTransform)
         {
-            int itemIndex = counter+(pageNumber*18);
+            int itemIndex = counter+(pageNumber*buttonCounter);
             getItemInfo info;
             info = child.gameObject.GetComponent<getItemInfo>();
             if (info)

@@ -51,6 +51,8 @@
      <Compile Include="Assets\Scriptable Objects\Scripts\MenuItem.cs" />
      <Compile Include="Assets\Scriptable Objects\Scripts\MenuLayout.cs" />
      <Compile Include="Assets\Scriptable Objects\Scripts\PlayerStats.cs" />
+     <Compile Include="Assets\Scripts\Decorating\RuntimeBrush.cs" />
+     <Compile Include="Assets\Scripts\HUD\Money.cs" />
      <Compile Include="Assets\Scripts\Menu\AssignButtonInfo.cs" />
      <Compile Include="Assets\Scripts\Menu\Category.cs" />
      <Compile Include="Assets\Scripts\Menu\CategoryFunction.cs" />

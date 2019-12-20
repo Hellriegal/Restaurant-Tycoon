@@ -8,7 +8,7 @@ public class Purchase : MonoBehaviour
 {
     public PlayerStats playerStats;
     public InventoryData inventoryData;
-    AudioSource audio;
+    private new AudioSource audio;
 
     void Start()
     {
