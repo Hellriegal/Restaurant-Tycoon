@@ -5,17 +5,14 @@ using UnityEngine.UI;
 
 public class PurchasePass : MonoBehaviour
 {
-    Button thisButton;
     getItemInfo itemInfo;
     string itemNameText;
     public Purchase purchase;
 
     void Start()
     {
-        thisButton = GetComponent<Button>();
         itemInfo = GetComponent<getItemInfo>();
         getItemName();
-        thisButton.onClick.AddListener(pass);
     }
 
     public void noMoney(bool ifTrue)

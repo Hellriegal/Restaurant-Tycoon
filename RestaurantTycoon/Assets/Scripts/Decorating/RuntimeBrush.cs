@@ -12,8 +12,9 @@ public class RuntimeBrush : MonoBehaviour
     public Tilemap Hover;
     public Grid grid;
     public Tile tile;
-    bool getMouse = false;
     Vector3Int tileToClear;
+    public List<Tile> tiles;
+    int tileCounter = 0;
 
     void Start()
     {
@@ -25,14 +26,52 @@ public class RuntimeBrush : MonoBehaviour
     {
         hover();
         paint();
+        changeActiveTile();
+    }
+
+    public void loadTiles(List<Tile> tilesToLoad)
+    {
+        tiles.Clear();
+        tileCounter = 0;
+        tiles = new List<Tile>(tilesToLoad);
+        tile = tiles[0];
+    }
+
+    void changeActiveTile()
+    {
+        
+        if (Input.GetKeyDown("r") & Input.GetKey(KeyCode.LeftShift))
+        {
+            if (tileCounter != 0)
+            {
+                tileCounter--;
+            }
+            else
+            {
+                tileCounter = tiles.Count-1;
+            }
+            tile = tiles[tileCounter];
+        }
+        else if (Input.GetKeyDown("r"))
+        {
+            if (tileCounter != (tiles.Count - 1))
+            {
+                tileCounter++;
+            }
+            else
+            {
+                tileCounter = 0;
+            }
+            tile = tiles[tileCounter];
+        }
     }
 
     void hover()
     {
-        mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
-        clearTile();
-        tileToClear = grid.WorldToCell(mousePosition);
-        Hover.SetTile(grid.WorldToCell(mousePosition), tile);
+            mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
+            clearTile();
+            tileToClear = grid.WorldToCell(mousePosition);
+            Hover.SetTile(grid.WorldToCell(mousePosition), tile);
     }
 
     void clearTile()
@@ -43,9 +82,16 @@ public class RuntimeBrush : MonoBehaviour
         }
     }
 
+    public void unconditionallyClearTile()
+    {
+        Hover.ClearAllTiles();
+    }
+
     void paint()
     {
-        if (Input.GetMouseButtonDown(0))
+        Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+        RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
+        if (Input.GetMouseButtonDown(0) & hit == false)
         {
             furniture.SetTile(grid.WorldToCell(camera.ScreenToWorldPoint(Input.mousePosition)), tile);
         }

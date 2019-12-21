@@ -8,6 +8,7 @@ public class LayoutManager : MonoBehaviour
 {
     Transform myTransform;
     public List<MenuItem> Items;
+    public List<DecorationItem> decorationItems;
     int counter = 0;
     int pageNumber = 0;
     int numberOfPages;
@@ -21,7 +22,14 @@ public class LayoutManager : MonoBehaviour
     {
         myTransform = GetComponent<Transform>();
         assignItem();
-        getNumberOfPages(Items.Count);
+        if (Items.Count > 0)
+        {
+            getNumberOfPages(Items.Count);
+        }
+        else if (decorationItems.Count > 0)
+        {
+            getNumberOfPages(decorationItems.Count);
+        }
     }
 
     void Update()
@@ -31,7 +39,7 @@ public class LayoutManager : MonoBehaviour
         activeObject();
     }
 
-    void activeObject()
+    public void activeObject()
     {
         if (Menu.activeInHierarchy == false)
         {
@@ -47,7 +55,7 @@ public class LayoutManager : MonoBehaviour
         assignItem();
     }
 
-    void noMoney()
+    public void noMoney()
     {
         if (meal == false)
         {
@@ -68,7 +76,7 @@ public class LayoutManager : MonoBehaviour
         }
     }
 
-    void getNumberOfPages(int totalItems)
+    public void getNumberOfPages(int totalItems)
     {
         foreach (Transform child in myTransform)
         {
@@ -90,23 +98,43 @@ public class LayoutManager : MonoBehaviour
             info = child.gameObject.GetComponent<getItemInfo>();
             if (info)
             {
-                if (itemIndex > Items.Count-1 || itemIndex == Items.Count - 1)
+                if (Items.Count > 0)
                 {
-                    itemIndex = -1;
+                    if (itemIndex > Items.Count-1 || itemIndex == Items.Count - 1)
+                    {
+                        itemIndex = -1;
+                    }
+                    info.menuItem = Items[itemIndex+1];
+                    counter++;
+                    getItemInfo itemInfo = child.gameObject.GetComponent<getItemInfo>();
+                    itemInfo.Start();
+                    if (meal == false)
+                    {
+                        PurchasePass purchasePass = child.gameObject.GetComponent<PurchasePass>();                        
+                        purchasePass.getItemName();
+                    }
                 }
-                info.menuItem = Items[itemIndex+1];
-                counter++;
-                getItemInfo itemInfo = child.gameObject.GetComponent<getItemInfo>();
-                itemInfo.Start();
-                if (meal == false)
+                else if (decorationItems.Count > 0)
                 {
-                    PurchasePass purchasePass = child.gameObject.GetComponent<PurchasePass>();                        purchasePass.getItemName();
+                    if (itemIndex > decorationItems.Count-1 || itemIndex == decorationItems.Count - 1)
+                    {
+                        itemIndex = -1;
+                    }
+                    info.decorationItem = decorationItems[itemIndex+1];
+                    counter++;
+                    getItemInfo itemInfo = child.gameObject.GetComponent<getItemInfo>();
+                    itemInfo.Start();
+                    if (meal == false)
+                    {
+                        PurchasePass purchasePass = child.gameObject.GetComponent<PurchasePass>();                        
+                        purchasePass.getItemName();
+                    }
                 }
             }
         }
     }
 
-    void nextPage()
+    public void nextPage()
     {
         if (Input.GetKey("left"))
         {

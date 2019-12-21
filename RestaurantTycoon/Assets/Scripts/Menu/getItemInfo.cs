@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class getItemInfo : MonoBehaviour
 {
     public MenuItem menuItem;
+    public DecorationItem decorationItem;
     public Text displayName;
     public string itemName;
     public Image image;
@@ -22,6 +23,15 @@ public class getItemInfo : MonoBehaviour
         itemName = menuItem.ItemName;
         image.sprite = menuItem.image;
         priceValue = menuItem.price;
+        price.text = "$ " + priceValue.ToString();
+        button = GetComponent<Button>();
+        }
+        else if (decorationItem)
+        {
+        displayName.text = decorationItem.DisplayName;
+        itemName = decorationItem.ItemName;
+        image.sprite = decorationItem.image;
+        priceValue = decorationItem.price;
         price.text = "$ " + priceValue.ToString();
         button = GetComponent<Button>();
         }

@@ -45,6 +45,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scriptable Objects\Scripts\DecorationItem.cs" />
      <Compile Include="Assets\Scriptable Objects\Scripts\IngredientPrices.cs" />
      <Compile Include="Assets\Scriptable Objects\Scripts\InventoryData.cs" />
      <Compile Include="Assets\Scriptable Objects\Scripts\MealData.cs" />
@@ -52,6 +53,7 @@
      <Compile Include="Assets\Scriptable Objects\Scripts\MenuLayout.cs" />
      <Compile Include="Assets\Scriptable Objects\Scripts\PlayerStats.cs" />
      <Compile Include="Assets\Scripts\Decorating\RuntimeBrush.cs" />
+     <Compile Include="Assets\Scripts\HUD\CameraDrag.cs" />
      <Compile Include="Assets\Scripts\HUD\Money.cs" />
      <Compile Include="Assets\Scripts\Menu\AssignButtonInfo.cs" />
      <Compile Include="Assets\Scripts\Menu\Category.cs" />
@@ -65,6 +67,8 @@
      <Compile Include="Assets\Scripts\Menu\SelectedMealUpdate.cs" />
      <Compile Include="Assets\Scripts\Menu\enableChild.cs" />
      <Compile Include="Assets\Scripts\Menu\getItemInfo.cs" />
+     <Compile Include="Assets\enableBrush.cs" />
+     <Compile Include="Assets\loadToBrush.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/Git/Restaurant-Tycoon/RestaurantTycoon/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

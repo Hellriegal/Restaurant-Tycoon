@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 759d26ebfd9e0df44bc661237ceb676b, type: 3}
+  m_Name: OakCounter
+  m_EditorClassIdentifier: 
+  ItemName: OakCounter
+  DisplayName: Oak
+  image: {fileID: -1994750538801600215, guid: ab92c2bbd8248184c80d15f269d1780d, type: 3}
+  price: 50
+  menuType: Counters
+  tile:
+  - {fileID: 11400000, guid: e4e31ff5c381e364c8f4ef28b00aafa6, type: 2}
+  - {fileID: 11400000, guid: 3afc863531fbfbb4aa9f2bd946d987d5, type: 2}
+  - {fileID: 11400000, guid: 54fd5ec7efe497e45bee0fee8e26209c, type: 2}
+  - {fileID: 11400000, guid: 1fcb31a85b82ae542b6bfdd73df32cef, type: 2}
+  - {fileID: 11400000, guid: 0084f54dc693ad44a899fd49b57a7068, type: 2}
+  - {fileID: 11400000, guid: ed35634845ed1b6448cbe8799dc48879, type: 2}
+  - {fileID: 11400000, guid: dbfb7d0014c0286498a8beafe1abb973, type: 2}
+  - {fileID: 11400000, guid: 1df74467d4b394a49b6101dc245a1b52, type: 2}

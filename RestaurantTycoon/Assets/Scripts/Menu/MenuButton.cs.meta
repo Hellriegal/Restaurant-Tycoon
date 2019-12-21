@@ -3,7 +3,11 @@ guid: f46fb35d50e08ed4499bbc0ee4fd9a4e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - objectToEnable: {instanceID: 0}
+  - ParentClass: {instanceID: 0}
+  - toggle1: {fileID: 8300000, guid: ba7d90fd647d57e49a13372e5663d4c5, type: 3}
+  - toggle2: {fileID: 8300000, guid: 431bdf881159bd7478dad63e5aa6950f, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
