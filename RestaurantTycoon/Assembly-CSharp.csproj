@@ -53,11 +53,14 @@
      <Compile Include="Assets\Scriptable Objects\Scripts\MenuLayout.cs" />
      <Compile Include="Assets\Scriptable Objects\Scripts\PlayerStats.cs" />
      <Compile Include="Assets\Scripts\Decorating\RuntimeBrush.cs" />
+     <Compile Include="Assets\Scripts\Decorating\enableBrush.cs" />
+     <Compile Include="Assets\Scripts\Decorating\loadToBrush.cs" />
      <Compile Include="Assets\Scripts\HUD\CameraDrag.cs" />
      <Compile Include="Assets\Scripts\HUD\Money.cs" />
      <Compile Include="Assets\Scripts\Menu\AssignButtonInfo.cs" />
      <Compile Include="Assets\Scripts\Menu\Category.cs" />
      <Compile Include="Assets\Scripts\Menu\CategoryFunction.cs" />
+     <Compile Include="Assets\Scripts\Menu\DecorationEnable.cs" />
      <Compile Include="Assets\Scripts\Menu\LayoutListUpdate.cs" />
      <Compile Include="Assets\Scripts\Menu\LayoutManager.cs" />
      <Compile Include="Assets\Scripts\Menu\MealScript.cs" />
@@ -67,8 +70,6 @@
      <Compile Include="Assets\Scripts\Menu\SelectedMealUpdate.cs" />
      <Compile Include="Assets\Scripts\Menu\enableChild.cs" />
      <Compile Include="Assets\Scripts\Menu\getItemInfo.cs" />
-     <Compile Include="Assets\enableBrush.cs" />
-     <Compile Include="Assets\loadToBrush.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/Git/Restaurant-Tycoon/RestaurantTycoon/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

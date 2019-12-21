@@ -95,5 +95,9 @@ public class RuntimeBrush : MonoBehaviour
         {
             furniture.SetTile(grid.WorldToCell(camera.ScreenToWorldPoint(Input.mousePosition)), tile);
         }
+        if (Input.GetMouseButtonDown(1))
+        {
+            furniture.SetTile(grid.WorldToCell(camera.ScreenToWorldPoint(Input.mousePosition)), null);
+        }
     }
 }
