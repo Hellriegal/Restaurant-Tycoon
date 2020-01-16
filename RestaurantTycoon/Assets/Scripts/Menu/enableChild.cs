@@ -5,6 +5,8 @@ using UnityEngine;
 public class enableChild : MonoBehaviour
 {
     public GameObject[] objects;
+    public enableBrush brushEnable;
+    public RuntimeBrush runtimeBrush;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,8 @@ public class enableChild : MonoBehaviour
 
     public void disable()
     {
+        brushEnable.menuToggle();
+        runtimeBrush.unconditionallyClearTile();
         foreach(GameObject menuType in objects)
         {
             menuType.SetActive(false);

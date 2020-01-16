@@ -25,5 +25,6 @@ public class DecorationEnable : MonoBehaviour
     {
         decorationItem = GetComponent<getItemInfo>().decorationItem;
         brush.toggle(decorationItem.ItemName);
+        brush.passTilemap(decorationItem.gridName);
     }
 }

@@ -8,7 +8,7 @@ public class CategoryFunction : MonoBehaviour
     Button button;
     [SerializeField]
     string listName = "Entrees";
-    public LayoutListUpdate llU;
+    public MealLayoutUpdate llU;
     public SelectedMealUpdate selectedMealUpdate;
     // Start is called before the first frame update
     void Start()

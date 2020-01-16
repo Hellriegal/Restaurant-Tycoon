@@ -12,4 +12,5 @@ public class DecorationItem : ScriptableObject
     public float price;
     public string menuType;
     public List<Tile> tile;
+    public string gridName;
 }

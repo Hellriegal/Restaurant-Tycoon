@@ -26,3 +26,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ed35634845ed1b6448cbe8799dc48879, type: 2}
   - {fileID: 11400000, guid: dbfb7d0014c0286498a8beafe1abb973, type: 2}
   - {fileID: 11400000, guid: 1df74467d4b394a49b6101dc245a1b52, type: 2}
+  gridName: Furniture

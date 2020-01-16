@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -8,7 +8,8 @@ public class RuntimeBrush : MonoBehaviour
     // Start is called before the first frame update
     Vector3 mousePosition;
     public Camera camera;
-    public Tilemap furniture;
+    public Tilemap[] tilemaps;
+    public Tilemap tilemap;
     public Tilemap Hover;
     public Grid grid;
     public Tile tile;
@@ -36,6 +37,21 @@ public class RuntimeBrush : MonoBehaviour
         tiles = new List<Tile>(tilesToLoad);
         tile = tiles[0];
     }
+
+    public void getTilemap(string tilemapName)
+    {
+        switch (tilemapName)
+        {
+            case "Furniture":
+            tilemap = tilemaps[0];
+            break;
+
+            case "Floor":
+            tilemap = tilemaps[1];
+            break;
+        }
+    }
+
 
     void changeActiveTile()
     {
@@ -93,11 +109,11 @@ public class RuntimeBrush : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
         if (Input.GetMouseButtonDown(0) & hit == false)
         {
-            furniture.SetTile(grid.WorldToCell(camera.ScreenToWorldPoint(Input.mousePosition)), tile);
+            tilemap.SetTile(grid.WorldToCell(camera.ScreenToWorldPoint(Input.mousePosition)), tile);
         }
         if (Input.GetMouseButtonDown(1))
         {
-            furniture.SetTile(grid.WorldToCell(camera.ScreenToWorldPoint(Input.mousePosition)), null);
+            tilemap.SetTile(grid.WorldToCell(camera.ScreenToWorldPoint(Input.mousePosition)), null);
         }
     }
 }

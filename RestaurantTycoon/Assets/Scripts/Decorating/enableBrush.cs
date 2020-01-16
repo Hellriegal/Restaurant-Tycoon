@@ -22,7 +22,6 @@ public class enableBrush : MonoBehaviour
 
     public void toggle(string itemName)
     {
-        Debug.Log(isTrue + ". itemName = " + itemName + ". DecorationName = " + decorationItemName);
         if (isTrue == false & itemName != decorationItemName)
         {                
             brush.enabled = true;
@@ -37,6 +36,12 @@ public class enableBrush : MonoBehaviour
         {
             decorationItemName = itemName;
         }
+    }
+
+    public void passTilemap(string tilemapName)
+    {
+        brush.getTilemap(tilemapName);
+        Debug.Log(tilemapName);
     }
 
     public void menuToggle()
