@@ -12,11 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759d26ebfd9e0df44bc661237ceb676b, type: 3}
   m_Name: WhiteWall
   m_EditorClassIdentifier: 
-  ItemName: WhiteWall
-  DisplayName: White Wall
+  ItemName: PaintedWall
+  DisplayName: Painted Wall
   image: {fileID: 557591765592381594, guid: 78ffc87a60129ca4096bf1475adfa884, type: 3}
   price: 100
   menuType: Walls
   tile:
   - {fileID: 11400000, guid: d79d8004750878d42bae7393383a74fc, type: 2}
+  - {fileID: 11400000, guid: d294b65c12fe1a04dab067873266258c, type: 2}
+  - {fileID: 11400000, guid: 31aa7448b9eeb114da6d7e3391d657ff, type: 2}
+  - {fileID: 11400000, guid: 73dda129f62b4da439beea9cb97048eb, type: 2}
+  - {fileID: 11400000, guid: 111db73eb3a88ac46ad7490851bde480, type: 2}
+  - {fileID: 11400000, guid: 8edbc0eed37b55b419266efc7f1534f1, type: 2}
+  - {fileID: 11400000, guid: 1d87e6931ce027f499688329fa036d40, type: 2}
+  - {fileID: 11400000, guid: de0b18c1afaa6c540b9881d9522c13e5, type: 2}
+  - {fileID: 11400000, guid: 6969df7df4193e8498edf5ff445cbc40, type: 2}
   gridName: Furniture

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 759d26ebfd9e0df44bc661237ceb676b, type: 3}
+  m_Name: CheckeredTiles
+  m_EditorClassIdentifier: 
+  ItemName: CheckeredTile
+  DisplayName: Checkered Tile
+  image: {fileID: -7541642142940281356, guid: 5d18087d530a6ac46b6b6e001dc68543, type: 3}
+  price: 25
+  menuType: 
+  tile:
+  - {fileID: 11400000, guid: d2612d5ad7fb9f94498c2e3f08ed757d, type: 2}
+  gridName: Floor

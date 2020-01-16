@@ -16,6 +16,7 @@ public class RuntimeBrush : MonoBehaviour
     Vector3Int tileToClear;
     public List<Tile> tiles;
     int tileCounter = 0;
+    PurchasePass purchasePass;
 
     void Start()
     {
@@ -110,6 +111,7 @@ public class RuntimeBrush : MonoBehaviour
         if (Input.GetMouseButtonDown(0) & hit == false)
         {
             tilemap.SetTile(grid.WorldToCell(camera.ScreenToWorldPoint(Input.mousePosition)), tile);
+
         }
         if (Input.GetMouseButtonDown(1))
         {

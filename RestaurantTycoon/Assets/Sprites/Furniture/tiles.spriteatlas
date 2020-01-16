@@ -44,13 +44,12 @@ SpriteAtlas:
     packables:
     - {fileID: 2800000, guid: 0e25df9414bf2b442a7d4c9b4b50e9a6, type: 3}
     - {fileID: 2800000, guid: ab92c2bbd8248184c80d15f269d1780d, type: 3}
-    - {fileID: 2800000, guid: 8fbec96c04d217c4e8cb122e08e830a3, type: 3}
     - {fileID: 2800000, guid: 5d18087d530a6ac46b6b6e001dc68543, type: 3}
-    totalSpriteSurfaceArea: 11456
+    totalSpriteSurfaceArea: 7936
     bindAsDefault: 1
     storedHash:
       serializedVersion: 2
-      Hash: 9ba08a4ca5f0bcb915838cd4e32bccf0
+      Hash: 4e003ad89657e03f50b2d79de8ced0b4
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 230126787842682512, guid: 0e25df9414bf2b442a7d4c9b4b50e9a6, type: 3}
@@ -65,10 +64,6 @@ SpriteAtlas:
   - {fileID: 7173254602739186620, guid: ab92c2bbd8248184c80d15f269d1780d, type: 3}
   - {fileID: 361966315176932176, guid: ab92c2bbd8248184c80d15f269d1780d, type: 3}
   - {fileID: -7836405731092350046, guid: ab92c2bbd8248184c80d15f269d1780d, type: 3}
-  - {fileID: 2671127772804791801, guid: 8fbec96c04d217c4e8cb122e08e830a3, type: 3}
-  - {fileID: -2074160140542310125, guid: 8fbec96c04d217c4e8cb122e08e830a3, type: 3}
-  - {fileID: -8363055929951228434, guid: 8fbec96c04d217c4e8cb122e08e830a3, type: 3}
-  - {fileID: 916757464287773004, guid: 8fbec96c04d217c4e8cb122e08e830a3, type: 3}
   - {fileID: 5426016950087014233, guid: 5d18087d530a6ac46b6b6e001dc68543, type: 3}
   - {fileID: -2918068548943628659, guid: 5d18087d530a6ac46b6b6e001dc68543, type: 3}
   - {fileID: 3524080185309826975, guid: 5d18087d530a6ac46b6b6e001dc68543, type: 3}
@@ -93,10 +88,6 @@ SpriteAtlas:
   - BenchTop_0
   - BenchTop_3
   - BenchTop_2
-  - RTWall_0
-  - RTWall_1
-  - RTWall_2
-  - RTWall_3
   - FloorTiles_9
   - FloorTiles_8
   - FloorTiles_3
