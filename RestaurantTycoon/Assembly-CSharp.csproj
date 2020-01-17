@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\Decorating\RuntimeBrush.cs" />
      <Compile Include="Assets\Scripts\Decorating\enableBrush.cs" />
      <Compile Include="Assets\Scripts\Decorating\loadToBrush.cs" />
+     <Compile Include="Assets\Scripts\Decorating\tileLocate.cs" />
      <Compile Include="Assets\Scripts\HUD\CameraDrag.cs" />
      <Compile Include="Assets\Scripts\HUD\Money.cs" />
      <Compile Include="Assets\Scripts\Menu\AssignButtonInfo.cs" />
