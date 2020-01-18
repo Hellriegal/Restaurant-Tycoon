@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scriptable Objects\Scripts\PlayerStats.cs" />
      <Compile Include="Assets\Scripts\Decorating\Dijkstra.cs" />
      <Compile Include="Assets\Scripts\Decorating\RuntimeBrush.cs" />
+     <Compile Include="Assets\Scripts\Decorating\TilemapToMovement.cs" />
      <Compile Include="Assets\Scripts\Decorating\enableBrush.cs" />
      <Compile Include="Assets\Scripts\Decorating\loadToBrush.cs" />
      <Compile Include="Assets\Scripts\Decorating\tileLocate.cs" />

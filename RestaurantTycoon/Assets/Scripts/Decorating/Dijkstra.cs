@@ -7,23 +7,18 @@ using System.Linq;
 
 public class Dijkstra : MonoBehaviour
 {
-    public tileLocate locate;
-    
-
+    tileLocate locate;
     public Vector3Int startPos;
     public Vector3Int goal;
-    public TileBase obstacle;
     Node goalNode;
-
-    bool backtrackDone = true;
-    
+    public bool backtrackDone;
     [Serializable]
     public struct Node
     {
         public int TotalCost;
-        public List<Vector3Int> path;
+        public Vector3Int path;
         public Vector3Int position;
-        public Node(int cost, Vector3Int pos, List<Vector3Int> prePos)
+        public Node(int cost, Vector3Int pos, Vector3Int prePos)
         {
             TotalCost = cost;
             position = pos;
@@ -32,20 +27,22 @@ public class Dijkstra : MonoBehaviour
     }
     Tilemap tilemap;
     GridLayout gridLayout;
-
     public List<Vector3Int> previousPositions;
     public List<Node> checkQueue;
     Node previousNode;
     public List<Node> nextNodes;
     Node currentNode;
-    public List<Vector3Int> updatePath;
     public List<Node> checkedNodes;
+
+    public List<Vector3Int> finalPath;
     
     void Start()
     {
+        locate = GetComponent<tileLocate>();
+        backtrackDone = true;
         addTilesToPrevious();
         previousPositions.Add(startPos);
-        checkQueue.Add(new Node(0, startPos, new List<Vector3Int> {startPos}));
+        checkQueue.Add(new Node(0, startPos, startPos));
         currentNode = checkQueue[0];
         previousNode = checkQueue[0];
         tilemap = GetComponent<Tilemap>();
@@ -54,6 +51,11 @@ public class Dijkstra : MonoBehaviour
         {
             NodeCheck();
         }
+    }
+
+    public void startProcess()
+    {
+        Start();
     }
 
     void addTilesToPrevious()
@@ -105,19 +107,19 @@ public class Dijkstra : MonoBehaviour
         //PreviousNode
             if (left != previousNode.position)
             {
-                nextNodes.Add(new Node(currentNode.TotalCost+1, left, new List<Vector3Int> {currentNode.position}));
+                nextNodes.Add(new Node(currentNode.TotalCost+1, left, currentNode.position));
             }
             if (right != previousNode.position)
             {
-                nextNodes.Add(new Node(currentNode.TotalCost+1, right, new List<Vector3Int> {currentNode.position}));
+                nextNodes.Add(new Node(currentNode.TotalCost+1, right, currentNode.position));
             }
             if (down != previousNode.position)
             {
-                nextNodes.Add(new Node(currentNode.TotalCost+1, down, new List<Vector3Int> {currentNode.position}));
+                nextNodes.Add(new Node(currentNode.TotalCost+1, down, currentNode.position));
             }
             if (up != previousNode.position)
             {
-                nextNodes.Add(new Node(currentNode.TotalCost+1, up, new List<Vector3Int> {currentNode.position}));
+                nextNodes.Add(new Node(currentNode.TotalCost+1, up, currentNode.position));
             }
         
         //previous positions
@@ -151,23 +153,24 @@ public class Dijkstra : MonoBehaviour
     
     void backtrack()
     {
-        if (goalNode.path[0] != goal)
+        if (goalNode.path != goal)
         {
             for (int i = 0; i < checkedNodes.Count(); i++)
             {
-                if (checkedNodes[i].position == goalNode.path[0])
+                if (checkedNodes[i].position == goalNode.path)
                 {
                     Debug.DrawLine(gridLayout.CellToWorld(goalNode.position), gridLayout.CellToWorld(checkedNodes[i].position), Color.green, 10);
+                    finalPath.Add(checkedNodes[i].position);
                     goalNode = checkedNodes[i];
                     break;
                 }
             }
-        }
-        else if (goalNode.path[0] == goal)
-        {
-            Debug.Log("Done");
-            Debug.DrawLine(gridLayout.CellToWorld(goalNode.position), gridLayout.CellToWorld(goalNode.path[0]), Color.green, 10);
-            backtrackDone = true;
+            if (goalNode.path == startPos)
+            {
+                finalPath.Add(goalNode.path);
+                backtrackDone = true;
+            }
+            Debug.DrawLine(gridLayout.CellToWorld(goalNode.position), gridLayout.CellToWorld(goalNode.path), Color.green, 10);
         }
     }
 
@@ -178,6 +181,7 @@ public class Dijkstra : MonoBehaviour
             if (checkedNodes[i].position == goal)
             {
                 goalNode = checkedNodes[i];
+                finalPath.Add(goal);
             }
         }
         backtrackDone = false;
