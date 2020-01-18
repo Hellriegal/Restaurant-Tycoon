@@ -7,16 +7,11 @@ public class FurnitureCategory : MonoBehaviour
 {
     public LayoutManager layoutManager;
     Button button;
-    [SerializeField]
-    List<DecorationItem> Counters;
-    [SerializeField]
-    List<DecorationItem> TablesChairs;
-    [SerializeField]
-    List<DecorationItem> Utility;
-    [SerializeField]
-    List<DecorationItem> FloorTiles;
-    [SerializeField]
-    List<DecorationItem> Decoration;
+    public List<DecorationItem> Counters;
+    public List<DecorationItem> TablesChairs;
+    public List<DecorationItem> Utility;
+    public List<DecorationItem> FloorTiles;
+    public List<DecorationItem> Decoration;
 
     void Start()
     {
