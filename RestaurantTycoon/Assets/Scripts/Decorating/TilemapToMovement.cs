@@ -17,9 +17,9 @@ public class TilemapToMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        counter = 0;
         updateCounter = true;
         checkMovement = false;
-        path = pathfinder.finalPath;
         transform = GetComponent<Transform>();
     }
 
@@ -28,6 +28,7 @@ public class TilemapToMovement : MonoBehaviour
     {
         if (pathfinder.backtrackDone == true)
         {
+            path = pathfinder.finalPath;
             checkMovement = true;
         }
         if (updateCounter == true & checkMovement == true)
@@ -38,6 +39,18 @@ public class TilemapToMovement : MonoBehaviour
         if (checkMovement == true)
         {
             movement();
+        }
+
+        
+        if (Input.GetKeyDown("9"))
+        {
+            Start();
+            pathfinder.startProcess(new Vector3Int (5,10,0), gridLayout.WorldToCell(transform.position));
+        }
+        else if (Input.GetKeyDown("0"))
+        {
+            Start();
+            pathfinder.startProcess(new Vector3Int (0,0,0), gridLayout.WorldToCell(transform.position));
         }
     }
 
@@ -50,13 +63,13 @@ public class TilemapToMovement : MonoBehaviour
         else
         {
             if (counter > 0)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, tileToWorld(path[counter-1]), 1);
-        }
-        if (transform.position == tileToWorld(path[counter-1]))
-        {
-            counter--;
-        }
+            {
+                transform.position = Vector3.MoveTowards(transform.position, tileToWorld(path[counter-1]), 1);
+            }
+            if (transform.position == tileToWorld(path[counter-1]))
+            {
+                counter--;
+            }
         }
     }
 

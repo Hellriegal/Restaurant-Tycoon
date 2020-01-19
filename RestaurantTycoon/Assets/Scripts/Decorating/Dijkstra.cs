@@ -38,7 +38,17 @@ public class Dijkstra : MonoBehaviour
     
     void Start()
     {
+        finalPath = new List<Vector3Int>();
+        goalNode = new Node();
+        previousNode = new Node();
+        currentNode = new Node();
+        previousPositions = new List<Vector3Int>();
+        checkQueue = new List<Node>();
+        nextNodes = new List<Node>();
+        checkedNodes = new List<Node>();
         locate = GetComponent<tileLocate>();
+        locate.Start();
+        locate.getAllTilePositions();
         backtrackDone = true;
         addTilesToPrevious();
         previousPositions.Add(startPos);
@@ -53,9 +63,13 @@ public class Dijkstra : MonoBehaviour
         }
     }
 
-    public void startProcess()
+    public void startProcess(Vector3Int newGoal, Vector3Int newStart)
     {
+        
+        goal = newGoal;
+        startPos = newStart;
         Start();
+        
     }
 
     void addTilesToPrevious()
@@ -73,6 +87,7 @@ public class Dijkstra : MonoBehaviour
         {
             backtrack();
         }
+
     }
 
     void NodeCheck()
@@ -142,6 +157,8 @@ public class Dijkstra : MonoBehaviour
         for (int i = 0; i < nextNodes.Count(); i++)
         {
             previousPositions.Add(nextNodes[i].position);
+
+            //Visualise the process
             Debug.DrawLine(gridLayout.CellToWorld(startPos), gridLayout.CellToWorld(goal), Color.blue, 1);
             Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y,nextNodes[i].position.z)), gridLayout.CellToWorld(nextNodes[i].position), Color.red, 1);
             Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x,nextNodes[i].position.y+1,nextNodes[i].position.z)), gridLayout.CellToWorld(nextNodes[i].position), Color.red, 1);
@@ -159,7 +176,7 @@ public class Dijkstra : MonoBehaviour
             {
                 if (checkedNodes[i].position == goalNode.path)
                 {
-                    Debug.DrawLine(gridLayout.CellToWorld(goalNode.position), gridLayout.CellToWorld(checkedNodes[i].position), Color.green, 10);
+                    //Debug.DrawLine(gridLayout.CellToWorld(goalNode.position), gridLayout.CellToWorld(checkedNodes[i].position), Color.green, 10);
                     finalPath.Add(checkedNodes[i].position);
                     goalNode = checkedNodes[i];
                     break;
@@ -170,7 +187,7 @@ public class Dijkstra : MonoBehaviour
                 finalPath.Add(goalNode.path);
                 backtrackDone = true;
             }
-            Debug.DrawLine(gridLayout.CellToWorld(goalNode.position), gridLayout.CellToWorld(goalNode.path), Color.green, 10);
+            //Debug.DrawLine(gridLayout.CellToWorld(goalNode.position), gridLayout.CellToWorld(goalNode.path), Color.green, 10);
         }
     }
 

@@ -41,7 +41,6 @@ public class enableBrush : MonoBehaviour
     public void passTilemap(string tilemapName)
     {
         brush.getTilemap(tilemapName);
-        Debug.Log(tilemapName);
     }
 
     public void menuToggle()

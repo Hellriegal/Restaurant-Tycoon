@@ -38,9 +38,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Floor
     uniqueID: 3479169395
     locked: 0
@@ -49,6 +46,9 @@ TagManager:
     locked: 0
   - name: Furniture
     uniqueID: 2817750037
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Hover
     uniqueID: 732427165

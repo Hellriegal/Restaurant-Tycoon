@@ -74,7 +74,8 @@
      <Compile Include="Assets\Scripts\Menu\SelectedMealUpdate.cs" />
      <Compile Include="Assets\Scripts\Menu\enableChild.cs" />
      <Compile Include="Assets\Scripts\Menu\getItemInfo.cs" />
-     <Compile Include="Assets\Scripts\Saving.cs" />
+     <Compile Include="Assets\Scripts\SaveTilemap.cs" />
+     <Compile Include="Assets\Scripts\TilemapSaveClass.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/Git/Restaurant-Tycoon/RestaurantTycoon/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

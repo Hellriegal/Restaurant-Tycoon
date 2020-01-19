@@ -7,7 +7,7 @@ using System.Linq;
 
 public class tileLocate : MonoBehaviour
 {
-    [Serializable]
+    [System.Serializable]
     public struct TileInfo
     {
         public TileBase tileType;
@@ -25,8 +25,10 @@ public class tileLocate : MonoBehaviour
     public List<Vector3Int> tilesPos;
     
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
+        tiles = new List<TileInfo>();
+        tilesPos = new List<Vector3Int>();
         tilemap = GetComponent<Tilemap>();
         gridLayout = transform.parent.GetComponentInParent<GridLayout>();
         getAllTilePositions();
