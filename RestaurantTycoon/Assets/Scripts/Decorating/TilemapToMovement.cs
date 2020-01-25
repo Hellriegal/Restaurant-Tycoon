@@ -7,20 +7,21 @@ using System.Linq;
 
 public class TilemapToMovement : MonoBehaviour
 {
-    Transform transform;
+    Transform myTransform;
     public GridLayout gridLayout;
     public List<Vector3Int> path;
-    public Dijkstra pathfinder;
+    Dijkstra pathfinder;
     public int counter;
     bool checkMovement;
     bool updateCounter;
     // Start is called before the first frame update
     void Start()
     {
+        pathfinder = GetComponent<Dijkstra>();
         counter = 0;
         updateCounter = true;
         checkMovement = false;
-        transform = GetComponent<Transform>();
+        myTransform = GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -45,12 +46,12 @@ public class TilemapToMovement : MonoBehaviour
         if (Input.GetKeyDown("9"))
         {
             Start();
-            pathfinder.startProcess(new Vector3Int (5,10,0), gridLayout.WorldToCell(transform.position));
+            pathfinder.startProcess(new Vector3Int (5,10,0), gridLayout.WorldToCell(myTransform.position));
         }
         else if (Input.GetKeyDown("0"))
         {
             Start();
-            pathfinder.startProcess(new Vector3Int (0,0,0), gridLayout.WorldToCell(transform.position));
+            pathfinder.startProcess(new Vector3Int (0,0,0), gridLayout.WorldToCell(myTransform.position));
         }
     }
 
@@ -64,9 +65,9 @@ public class TilemapToMovement : MonoBehaviour
         {
             if (counter > 0)
             {
-                transform.position = Vector3.MoveTowards(transform.position, tileToWorld(path[counter-1]), 1);
+                myTransform.position = Vector3.MoveTowards(myTransform.position, tileToWorld(path[counter-1]), 1);
             }
-            if (transform.position == tileToWorld(path[counter-1]))
+            if (myTransform.position == tileToWorld(path[counter-1]))
             {
                 counter--;
             }

@@ -25,8 +25,8 @@ public class Dijkstra : MonoBehaviour
             path = prePos;
         }
     }
-    Tilemap tilemap;
-    GridLayout gridLayout;
+    public Tilemap tilemap;
+    public GridLayout gridLayout;
     public List<Vector3Int> previousPositions;
     public List<Node> checkQueue;
     Node previousNode;
@@ -46,7 +46,7 @@ public class Dijkstra : MonoBehaviour
         checkQueue = new List<Node>();
         nextNodes = new List<Node>();
         checkedNodes = new List<Node>();
-        locate = GetComponent<tileLocate>();
+        locate = tilemap.gameObject.GetComponent<tileLocate>();
         locate.Start();
         locate.getAllTilePositions();
         backtrackDone = true;
@@ -55,8 +55,6 @@ public class Dijkstra : MonoBehaviour
         checkQueue.Add(new Node(0, startPos, startPos));
         currentNode = checkQueue[0];
         previousNode = checkQueue[0];
-        tilemap = GetComponent<Tilemap>();
-        gridLayout = transform.parent.GetComponentInParent<GridLayout>();
         if (currentNode.position != goal)
         {
             NodeCheck();
@@ -159,11 +157,11 @@ public class Dijkstra : MonoBehaviour
             previousPositions.Add(nextNodes[i].position);
 
             //Visualise the process
-            Debug.DrawLine(gridLayout.CellToWorld(startPos), gridLayout.CellToWorld(goal), Color.blue, 1);
-            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y,nextNodes[i].position.z)), gridLayout.CellToWorld(nextNodes[i].position), Color.red, 1);
-            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x,nextNodes[i].position.y+1,nextNodes[i].position.z)), gridLayout.CellToWorld(nextNodes[i].position), Color.red, 1);
-            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y+1,nextNodes[i].position.z)), gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y,nextNodes[i].position.z)), Color.red, 1);
-            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y+1,nextNodes[i].position.z)), gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x,nextNodes[i].position.y+1,nextNodes[i].position.z)), Color.red, 1);
+            //Debug.DrawLine(gridLayout.CellToWorld(startPos), gridLayout.CellToWorld(goal), Color.blue, 1);
+            //Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y,nextNodes[i].position.z)), gridLayout.CellToWorld(nextNodes[i].position), Color.red, 1);
+            //Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x,nextNodes[i].position.y+1,nextNodes[i].position.z)), gridLayout.CellToWorld(nextNodes[i].position), Color.red, 1);
+            //Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y+1,nextNodes[i].position.z)), gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y,nextNodes[i].position.z)), Color.red, 1);
+            //Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y+1,nextNodes[i].position.z)), gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x,nextNodes[i].position.y+1,nextNodes[i].position.z)), Color.red, 1);
         }
         checkedNodes.Distinct();
     }

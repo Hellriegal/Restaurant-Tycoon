@@ -7,7 +7,7 @@ public class RuntimeBrush : MonoBehaviour
 {
     // Start is called before the first frame update
     Vector3 mousePosition;
-    public Camera camera;
+    public Camera myCamera;
     public Tilemap[] tilemaps;
     public Tilemap tilemap;
     public Tilemap Hover;
@@ -85,7 +85,7 @@ public class RuntimeBrush : MonoBehaviour
 
     void hover()
     {
-            mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
             clearTile();
             tileToClear = grid.WorldToCell(mousePosition);
             Hover.SetTile(grid.WorldToCell(mousePosition), tile);
@@ -110,12 +110,12 @@ public class RuntimeBrush : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
         if (Input.GetMouseButtonDown(0) & hit == false)
         {
-            tilemap.SetTile(grid.WorldToCell(camera.ScreenToWorldPoint(Input.mousePosition)), tile);
+            tilemap.SetTile(grid.WorldToCell(myCamera.ScreenToWorldPoint(Input.mousePosition)), tile);
 
         }
         if (Input.GetMouseButtonDown(1))
         {
-            tilemap.SetTile(grid.WorldToCell(camera.ScreenToWorldPoint(Input.mousePosition)), null);
+            tilemap.SetTile(grid.WorldToCell(myCamera.ScreenToWorldPoint(Input.mousePosition)), null);
         }
     }
 }
