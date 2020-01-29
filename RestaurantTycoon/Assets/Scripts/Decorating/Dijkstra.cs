@@ -55,18 +55,17 @@ public class Dijkstra : MonoBehaviour
         checkQueue.Add(new Node(0, startPos, startPos));
         currentNode = checkQueue[0];
         previousNode = checkQueue[0];
-        if (currentNode.position != goal)
-        {
-            NodeCheck();
-        }
     }
 
     public void startProcess(Vector3Int newGoal, Vector3Int newStart)
     {
-        
         goal = newGoal;
         startPos = newStart;
         Start();
+        if (currentNode.position != goal)
+        {
+            NodeCheck();
+        }
         
     }
 
@@ -157,11 +156,11 @@ public class Dijkstra : MonoBehaviour
             previousPositions.Add(nextNodes[i].position);
 
             //Visualise the process
-            //Debug.DrawLine(gridLayout.CellToWorld(startPos), gridLayout.CellToWorld(goal), Color.blue, 1);
-            //Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y,nextNodes[i].position.z)), gridLayout.CellToWorld(nextNodes[i].position), Color.red, 1);
-            //Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x,nextNodes[i].position.y+1,nextNodes[i].position.z)), gridLayout.CellToWorld(nextNodes[i].position), Color.red, 1);
-            //Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y+1,nextNodes[i].position.z)), gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y,nextNodes[i].position.z)), Color.red, 1);
-            //Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y+1,nextNodes[i].position.z)), gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x,nextNodes[i].position.y+1,nextNodes[i].position.z)), Color.red, 1);
+            Debug.DrawLine(gridLayout.CellToWorld(startPos), gridLayout.CellToWorld(goal), Color.blue, 1);
+            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y,nextNodes[i].position.z)), gridLayout.CellToWorld(nextNodes[i].position), Color.red, 1);
+            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x,nextNodes[i].position.y+1,nextNodes[i].position.z)), gridLayout.CellToWorld(nextNodes[i].position), Color.red, 1);
+            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y+1,nextNodes[i].position.z)), gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y,nextNodes[i].position.z)), Color.red, 1);
+            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y+1,nextNodes[i].position.z)), gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x,nextNodes[i].position.y+1,nextNodes[i].position.z)), Color.red, 1);
         }
         checkedNodes.Distinct();
     }
@@ -174,7 +173,7 @@ public class Dijkstra : MonoBehaviour
             {
                 if (checkedNodes[i].position == goalNode.path)
                 {
-                    //Debug.DrawLine(gridLayout.CellToWorld(goalNode.position), gridLayout.CellToWorld(checkedNodes[i].position), Color.green, 10);
+                    Debug.DrawLine(gridLayout.CellToWorld(goalNode.position), gridLayout.CellToWorld(checkedNodes[i].position), Color.green, 10);
                     finalPath.Add(checkedNodes[i].position);
                     goalNode = checkedNodes[i];
                     break;
@@ -185,7 +184,7 @@ public class Dijkstra : MonoBehaviour
                 finalPath.Add(goalNode.path);
                 backtrackDone = true;
             }
-            //Debug.DrawLine(gridLayout.CellToWorld(goalNode.position), gridLayout.CellToWorld(goalNode.path), Color.green, 10);
+            Debug.DrawLine(gridLayout.CellToWorld(goalNode.position), gridLayout.CellToWorld(goalNode.path), Color.green, 10);
         }
     }
 
@@ -200,6 +199,7 @@ public class Dijkstra : MonoBehaviour
             }
         }
         backtrackDone = false;
+        //Debug.Log(backtrackDone);
     }
 
 }

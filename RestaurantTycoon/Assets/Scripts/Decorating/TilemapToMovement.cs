@@ -11,11 +11,12 @@ public class TilemapToMovement : MonoBehaviour
     public GridLayout gridLayout;
     public List<Vector3Int> path;
     Dijkstra pathfinder;
-    public int counter;
+    int counter;
     bool checkMovement;
     bool updateCounter;
+    public float speed = 1;
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         pathfinder = GetComponent<Dijkstra>();
         counter = 0;
@@ -65,7 +66,7 @@ public class TilemapToMovement : MonoBehaviour
         {
             if (counter > 0)
             {
-                myTransform.position = Vector3.MoveTowards(myTransform.position, tileToWorld(path[counter-1]), 1);
+                myTransform.position = Vector3.MoveTowards(myTransform.position, tileToWorld(path[counter-1]), speed);
             }
             if (myTransform.position == tileToWorld(path[counter-1]))
             {

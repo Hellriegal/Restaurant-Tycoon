@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\Menu\getItemInfo.cs" />
      <Compile Include="Assets\Scripts\Saving\CreatePrefab.cs" />
      <Compile Include="Assets\Scripts\Saving\SaveTilemap.cs" />
+     <Compile Include="Assets\Scripts\StaffAI\CustomerBrain.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/Git/Restaurant-Tycoon/RestaurantTycoon/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
