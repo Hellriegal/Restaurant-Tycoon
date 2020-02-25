@@ -15,10 +15,10 @@ public class Dijkstra : MonoBehaviour
     [Serializable]
     public struct Node
     {
-        public int TotalCost;
+        public float TotalCost;
         public Vector3Int path;
         public Vector3Int position;
-        public Node(int cost, Vector3Int pos, Vector3Int prePos)
+        public Node(float cost, Vector3Int pos, Vector3Int prePos)
         {
             TotalCost = cost;
             position = pos;
@@ -33,11 +33,21 @@ public class Dijkstra : MonoBehaviour
     public List<Node> nextNodes;
     Node currentNode;
     public List<Node> checkedNodes;
+    Bounds boundary;
+    public bool goalFound;
+    public int iterations = 0;
 
     public List<Vector3Int> finalPath;
     
+    public int SmallestFirst (Node a, Node b)
+    {
+        return b.TotalCost.CompareTo (a.TotalCost);
+    }
+
     void Start()
     {
+        goalFound = false;
+        boundary = new Bounds(new Vector3 (0,0,0), new Vector3(20,40,0));
         finalPath = new List<Vector3Int>();
         goalNode = new Node();
         previousNode = new Node();
@@ -69,8 +79,19 @@ public class Dijkstra : MonoBehaviour
         
     }
 
+    float costUpdate(Node currentNode)
+    {
+        float cost = currentNode.TotalCost;
+        //Distance from start
+        currentNode.TotalCost = 69; //currentNode.TotalCost + Convert.ToInt32(Vector3.Distance(currentNode.position, startPos));
+        //Distance from goal
+        //currentNode.TotalCost = currentNode.TotalCost + Vector3.Distance(currentNode.position, goalNode.position);
+        return cost;
+    }
+
     void addTilesToPrevious()
     {
+        //Every tile in the tileMap is treated as an obstacle
         for (int i = 0; i < locate.tilesPos.Count(); i++)
         {
             previousPositions.Add(locate.tilesPos[i]);
@@ -84,20 +105,22 @@ public class Dijkstra : MonoBehaviour
         {
             backtrack();
         }
-
     }
 
     void NodeCheck()
     {
-        for (int i = 0; i < checkQueue.Count(); i++)
+        for (int i = 0; i < 4; i++)
         {
-            surroundingNode(checkQueue[i]);
+            iterations = i;
+            checkQueue.Sort(SmallestFirst);
+            surroundingNode(checkQueue[0]);
             for (int j = 0; j < nextNodes.Count(); j++)
             {
                 if (nextNodes[j].position == goal)
                 {
                     getGoalNode();
-                    i = checkQueue.Count();
+                    i = 400;
+                    goalFound = true;
                     break;
                 }
                 checkQueue.Add(nextNodes[j]);
@@ -153,8 +176,9 @@ public class Dijkstra : MonoBehaviour
         //add to previous positions
         for (int i = 0; i < nextNodes.Count(); i++)
         {
+            checkQueue.Remove(curNode);
+            costUpdate(nextNodes[i]);
             previousPositions.Add(nextNodes[i].position);
-
             //Visualise the process
             Debug.DrawLine(gridLayout.CellToWorld(startPos), gridLayout.CellToWorld(goal), Color.blue, 1);
             Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y,nextNodes[i].position.z)), gridLayout.CellToWorld(nextNodes[i].position), Color.red, 1);
@@ -201,5 +225,4 @@ public class Dijkstra : MonoBehaviour
         backtrackDone = false;
         //Debug.Log(backtrackDone);
     }
-
 }

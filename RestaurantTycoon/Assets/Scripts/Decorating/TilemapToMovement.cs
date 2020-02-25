@@ -42,17 +42,20 @@ public class TilemapToMovement : MonoBehaviour
         {
             movement();
         }
+        DebugGoals();
+    }
 
-        
+    void DebugGoals()
+    {
         if (Input.GetKeyDown("9"))
         {
             Start();
-            pathfinder.startProcess(new Vector3Int (5,10,0), gridLayout.WorldToCell(myTransform.position));
+            pathfinder.startProcess(new Vector3Int (2,0,0), gridLayout.WorldToCell(myTransform.position));
         }
         else if (Input.GetKeyDown("0"))
         {
             Start();
-            pathfinder.startProcess(new Vector3Int (0,0,0), gridLayout.WorldToCell(myTransform.position));
+            pathfinder.startProcess(new Vector3Int (-2,0,0), gridLayout.WorldToCell(myTransform.position));
         }
     }
 

@@ -12,11 +12,9 @@ public class CustomerBrain : MonoBehaviour
     public GridLayout gridLayout;
     Transform myTransform;
     public tileLocate locate;
-    bool goalFound;
     // Start is called before the first frame update
     void Start()
     {
-        goalFound = false;
         movement = GetComponent<TilemapToMovement>();
         goal = new Vector3Int(16, -2, 0);
         myTransform = GetComponent<Transform>();
@@ -45,7 +43,6 @@ public class CustomerBrain : MonoBehaviour
                     goal = locate.tiles[i].position;
                     Debug.Log(goal);
                     i = locate.tiles.Count;
-                    goalFound = true;
                     break;
                 }
             }

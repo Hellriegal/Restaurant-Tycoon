@@ -26688,9 +26688,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1601347a096e33a44b2c722a28cef76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locate: {fileID: 3265109236803327711}
   chairs: []
   gridLayout: {fileID: 1086213748}
+  locate: {fileID: 3265109236803327711}
 --- !u!114 &676836793 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4524187539899338136, guid: 833d4f4fd4e78fe44abe358f52a799c2,
@@ -33109,7 +33109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1507253145
 Transform:
   m_ObjectHideFlags: 0
@@ -33136,13 +33136,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1601347a096e33a44b2c722a28cef76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locate: {fileID: 3265109236803327711}
   chairs:
   - {fileID: 11400000, guid: b73c72beffe8e12439bcb7f18aaa4258, type: 2}
   - {fileID: 11400000, guid: 033265b484cb9d942b2d689df99df4a7, type: 2}
   - {fileID: 11400000, guid: a339b3858acc41945b5f77e8cc73f996, type: 2}
   - {fileID: 11400000, guid: 3b11784eabdea904f920a875e29017aa, type: 2}
   gridLayout: {fileID: 1086213748}
+  locate: {fileID: 3265109236803327711}
 --- !u!114 &1507253147
 MonoBehaviour:
   m_ObjectHideFlags: 0
