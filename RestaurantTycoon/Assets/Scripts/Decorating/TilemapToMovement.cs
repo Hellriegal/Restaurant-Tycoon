@@ -10,7 +10,7 @@ public class TilemapToMovement : MonoBehaviour
     Transform myTransform;
     public GridLayout gridLayout;
     public List<Vector3Int> path;
-    Dijkstra pathfinder;
+    DijkstraOptimised pathfinder;
     int counter;
     bool checkMovement;
     bool updateCounter;
@@ -18,7 +18,7 @@ public class TilemapToMovement : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        pathfinder = GetComponent<Dijkstra>();
+        pathfinder = GetComponent<DijkstraOptimised>();
         counter = 0;
         updateCounter = true;
         checkMovement = false;
@@ -30,7 +30,7 @@ public class TilemapToMovement : MonoBehaviour
     {
         if (pathfinder.backtrackDone == true)
         {
-            path = pathfinder.finalPath;
+            path = pathfinder.pathBack;
             checkMovement = true;
         }
         if (updateCounter == true & checkMovement == true)
@@ -50,12 +50,12 @@ public class TilemapToMovement : MonoBehaviour
         if (Input.GetKeyDown("9"))
         {
             Start();
-            pathfinder.startProcess(new Vector3Int (10,10,0), gridLayout.WorldToCell(myTransform.position));
+            pathfinder.startProcess(gridLayout.WorldToCell(myTransform.position), new Vector3Int (10,10,0));
         }
         else if (Input.GetKeyDown("0"))
         {
             Start();
-            pathfinder.startProcess(new Vector3Int (-2,0,0), gridLayout.WorldToCell(myTransform.position));
+            pathfinder.startProcess(gridLayout.WorldToCell(myTransform.position), new Vector3Int (0,0,0));
         }
     }
 
