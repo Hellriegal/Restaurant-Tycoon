@@ -165,6 +165,7 @@ public class Dijkstra : MonoBehaviour
                 if (nextNodes[i].position == previousPositions[j])
                 {
                     nextNodes.RemoveAt(i);
+                    break;
                 }
             }
         }
@@ -220,6 +221,7 @@ public class Dijkstra : MonoBehaviour
             {
                 goalNode = checkedNodes[i];
                 finalPath.Add(goal);
+                break;
             }
         }
         backtrackDone = false;

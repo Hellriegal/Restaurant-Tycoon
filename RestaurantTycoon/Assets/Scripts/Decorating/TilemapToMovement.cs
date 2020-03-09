@@ -50,7 +50,7 @@ public class TilemapToMovement : MonoBehaviour
         if (Input.GetKeyDown("9"))
         {
             Start();
-            pathfinder.startProcess(new Vector3Int (2,0,0), gridLayout.WorldToCell(myTransform.position));
+            pathfinder.startProcess(new Vector3Int (10,10,0), gridLayout.WorldToCell(myTransform.position));
         }
         else if (Input.GetKeyDown("0"))
         {

@@ -26565,8 +26565,8 @@ GameObject:
   - component: {fileID: 664804938}
   - component: {fileID: 664804937}
   - component: {fileID: 664804936}
-  - component: {fileID: 664804939}
   - component: {fileID: 664804940}
+  - component: {fileID: 664804939}
   m_Layer: 0
   m_Name: Waiter
   m_TagString: Untagged
@@ -26581,7 +26581,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 664804935}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dec9be6c7c6b34f4dac2a3c79aaaa54d, type: 3}
   m_Name: 
@@ -26663,19 +26663,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 664804935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f4adb24a78f34840a9b724c66878984, type: 3}
+  m_Script: {fileID: 11500000, guid: ce60105c4bb012d44ab05640456f2a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: {x: 0, y: 0, z: 0}
-  goal: {x: 5, y: 0, z: 0}
-  backtrackDone: 0
   tilemap: {fileID: 3265109236803327697}
   gridLayout: {fileID: 1086213748}
-  previousPositions: []
+  obstacles: []
+  checkedPositions: []
   checkQueue: []
-  nextNodes: []
-  checkedNodes: []
-  finalPath: []
+  adjacentTiles: []
 --- !u!114 &664804940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33164,6 +33160,8 @@ MonoBehaviour:
   checkQueue: []
   nextNodes: []
   checkedNodes: []
+  goalFound: 0
+  iterations: 0
   finalPath: []
 --- !u!114 &1507253148
 MonoBehaviour:

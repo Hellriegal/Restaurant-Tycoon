@@ -7,18 +7,19 @@ using System.Linq;
 
 public class DijkstraOptimised : MonoBehaviour
 {
+    public int SmallestFirst (Node a, Node b)
+    {
+        return a.TotalCost.CompareTo (b.TotalCost);
+    }
+
     tileLocate locate;
-    public Vector3Int startPos;
-    public Vector3Int goal;
-    Node goalNode;
-    public bool backtrackDone;
     [Serializable]
     public struct Node
     {
-        public int TotalCost;
+        public float TotalCost;
         public Vector3Int path;
         public Vector3Int position;
-        public Node(int cost, Vector3Int pos, Vector3Int prePos)
+        public Node(float cost, Vector3Int pos, Vector3Int prePos)
         {
             TotalCost = cost;
             position = pos;
@@ -27,50 +28,29 @@ public class DijkstraOptimised : MonoBehaviour
     }
     public Tilemap tilemap;
     public GridLayout gridLayout;
-    public List<Vector3Int> previousPositions;
-    public List<Node> checkQueue;
-    Node previousNode;
-    public List<Node> nextNodes;
-    Node currentNode;
-    public List<Node> checkedNodes;
-    Bounds boundary;
-    bool goalFound;
 
-    public List<Vector3Int> finalPath;
+    public List<Vector3Int> obstacles;
+    public List<Vector3Int> checkedPositions;
+    public List<Node> checkQueue;
+    public List<Node> adjacentTiles;
+
+    Node start;
+    Node goal;
+
+    bool goalFound;
     
     void Start()
     {
         goalFound = false;
-        boundary = new Bounds(new Vector3 (0,0,0), new Vector3(20,40,0));
-        finalPath = new List<Vector3Int>();
-        goalNode = new Node();
-        previousNode = new Node();
-        currentNode = new Node();
-        previousPositions = new List<Vector3Int>();
-        checkQueue = new List<Node>();
-        nextNodes = new List<Node>();
-        checkedNodes = new List<Node>();
+        start.position = new Vector3Int(0,0,0);
+        goal.position = new Vector3Int(30,20,0);
+        //tileLocate to get all occupied furniture tiles to use as obstacles.
         locate = tilemap.gameObject.GetComponent<tileLocate>();
         locate.Start();
         locate.getAllTilePositions();
-        backtrackDone = true;
         addTilesToPrevious();
-        previousPositions.Add(startPos);
-        checkQueue.Add(new Node(0, startPos, startPos));
-        currentNode = checkQueue[0];
-        previousNode = checkQueue[0];
-    }
-
-    public void startProcess(Vector3Int newGoal, Vector3Int newStart)
-    {
-        goal = newGoal;
-        startPos = newStart;
-        Start();
-        if (currentNode.position != goal)
-        {
-            NodeCheck();
-        }
-        
+        checkQueue.Add(start);
+        search();
     }
 
     void addTilesToPrevious()
@@ -78,140 +58,132 @@ public class DijkstraOptimised : MonoBehaviour
         //Every tile in the tileMap is treated as an obstacle
         for (int i = 0; i < locate.tilesPos.Count(); i++)
         {
-            previousPositions.Add(locate.tilesPos[i]);
+            obstacles.Add(locate.tilesPos[i]);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (backtrackDone == false)
+        if (Input.GetKeyDown("s"))
         {
-            backtrack();
+            sort();
         }
     }
 
-    void costUpdate(Node currentNode)
+    void sort()
     {
-        //Distance from start
-        currentNode.TotalCost = currentNode.TotalCost + Convert.ToInt32(Vector3.Distance(currentNode.position, startPos));
-        //Distance from goal
-        currentNode.TotalCost = currentNode.TotalCost + Convert.ToInt32(Vector3.Distance(currentNode.position, goalNode.position));
+        checkQueue.Sort(SmallestFirst);
     }
 
-    void NodeCheck()
+    void search()
     {
-        for (int i = 0; i < checkQueue.Count(); i++)
+        for (int i = 0; i < 400; i++)
         {
-            surroundingNode(checkQueue[i]);
-            for (int j = 0; j < nextNodes.Count(); j++)
+            sort();  
+            if (checkQueue[0].position == goal.position)
             {
-                if (nextNodes[j].position == goal)
+                Debug.Log("Goal Found");
+                goalFound = true;
+                break;
+            }
+            pastPositionClear();
+            Debug.Log(checkQueue[0].position);
+            getAdjacentTiles(checkQueue[0]);
+        }
+    }
+
+    void pastPositionClear()
+    {
+        for (int i = 0; i < checkedPositions.Count(); i++)
+        {
+            for (int j = 0; j < checkQueue.Count(); j++)
+            {
+                if (checkQueue[j].position == checkedPositions[i])
                 {
-                    getGoalNode();
-                    i = checkQueue.Count();
-                    goalFound = true;
+                    checkQueue.RemoveAt(j);
                     break;
                 }
-                checkQueue.Clear();
-                checkQueue.Add(nextNodes[j]);
             }
         }
     }
 
-    //Checks surrounding nodes and adds to the list "nextNodes" those that are to be checked next
-    void surroundingNode(Node curNode)
+    void getAdjacentTiles(Node currentNode)
     {
-        currentNode = curNode;
-        nextNodes.Clear();
-
+        checkQueue.RemoveAt(0);
+        adjacentTiles.Clear();
+        //Get all adjacent tiles in a 4 way.
         Vector3Int left = new Vector3Int(currentNode.position.x -1, currentNode.position.y, currentNode.position.z);
         Vector3Int right = new Vector3Int(currentNode.position.x +1, currentNode.position.y, currentNode.position.z);
         Vector3Int down = new Vector3Int(currentNode.position.x, currentNode.position.y -1, currentNode.position.z);
         Vector3Int up = new Vector3Int(currentNode.position.x, currentNode.position.y +1, currentNode.position.z);
 
-        //PreviousNode
-            if (left != previousNode.position)
-            {
-                nextNodes.Add(new Node(currentNode.TotalCost+1, left, currentNode.position));
-            }
-            if (right != previousNode.position)
-            {
-                nextNodes.Add(new Node(currentNode.TotalCost+1, right, currentNode.position));
-            }
-            if (down != previousNode.position)
-            {
-                nextNodes.Add(new Node(currentNode.TotalCost+1, down, currentNode.position));
-            }
-            if (up != previousNode.position)
-            {
-                nextNodes.Add(new Node(currentNode.TotalCost+1, up, currentNode.position));
-            }
-        
-        //previous positions
-        for (int j = 0; j < previousPositions.Count(); j++)
+        //add to adjacentTiles if not the node that we just checked. Used to cut down the search of previous positions by eliminating one now.
+        if (left != currentNode.path)
         {
-            for (int i = 0; i < nextNodes.Count(); i++)
+            adjacentTiles.Add(new Node(currentNode.TotalCost, left, currentNode.position));
+        }
+        if (right != currentNode.path)
+        {
+            adjacentTiles.Add(new Node(currentNode.TotalCost, right, currentNode.position));
+        }
+        if (down != currentNode.path)
+        {
+            adjacentTiles.Add(new Node(currentNode.TotalCost, down, currentNode.position));
+        }
+        if (up != currentNode.path)
+        {
+            adjacentTiles.Add(new Node(currentNode.TotalCost, up, currentNode.position));
+        }
+        //Compare against all previous positions, and remove any that double up
+        for (int i = 0; i < checkedPositions.Count(); i++)
+        {
+            for (int j = 0; j < adjacentTiles.Count(); j++)
             {
-                if (nextNodes[i].position == previousPositions[j])
+                if (adjacentTiles[j].position == checkedPositions[i])
                 {
-                    nextNodes.RemoveAt(i);
-                }
-            }
-        }
-        //PathUpdate
-        for (int i = 0; i < nextNodes.Count(); i++)
-        {
-            checkedNodes.Add(nextNodes[i]);
-        }
-        //add to previous positions
-        for (int i = 0; i < nextNodes.Count(); i++)
-        {
-            previousPositions.Add(nextNodes[i].position);
-            //Visualise the process
-            Debug.DrawLine(gridLayout.CellToWorld(startPos), gridLayout.CellToWorld(goal), Color.blue, 1);
-            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y,nextNodes[i].position.z)), gridLayout.CellToWorld(nextNodes[i].position), Color.red, 1);
-            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x,nextNodes[i].position.y+1,nextNodes[i].position.z)), gridLayout.CellToWorld(nextNodes[i].position), Color.red, 1);
-            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y+1,nextNodes[i].position.z)), gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y,nextNodes[i].position.z)), Color.red, 1);
-            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x+1,nextNodes[i].position.y+1,nextNodes[i].position.z)), gridLayout.CellToWorld(new Vector3Int(nextNodes[i].position.x,nextNodes[i].position.y+1,nextNodes[i].position.z)), Color.red, 1);
-        }
-        checkedNodes.Distinct();
-    }
-    
-    void backtrack()
-    {
-        if (goalNode.path != goal)
-        {
-            for (int i = 0; i < checkedNodes.Count(); i++)
-            {
-                if (checkedNodes[i].position == goalNode.path)
-                {
-                    Debug.DrawLine(gridLayout.CellToWorld(goalNode.position), gridLayout.CellToWorld(checkedNodes[i].position), Color.green, 10);
-                    finalPath.Add(checkedNodes[i].position);
-                    goalNode = checkedNodes[i];
+                    adjacentTiles.RemoveAt(j);
                     break;
                 }
             }
-            if (goalNode.path == startPos)
-            {
-                finalPath.Add(goalNode.path);
-                backtrackDone = true;
-            }
-            Debug.DrawLine(gridLayout.CellToWorld(goalNode.position), gridLayout.CellToWorld(goalNode.path), Color.green, 10);
         }
+        //Compare against obstacles
+        for (int i = adjacentTiles.Count()-1; i > 0; i--)
+        {
+            for (int j = 0; j < obstacles.Count(); j++)
+            {
+                if (adjacentTiles[i].position == obstacles[j])
+                {
+                    adjacentTiles.RemoveAt(i);
+                    break;
+                }
+            }
+        }
+        
+        //calculate cost then add to checkQueue and checkedPositions
+        for (int i = 0; i < adjacentTiles.Count(); i++)
+        {
+            adjacentTiles[i] = new Node (calculateCost(adjacentTiles[i]), adjacentTiles[i].position, adjacentTiles[i].path);
+            checkQueue.Add(adjacentTiles[i]);
+            //visualise pathfinding
+            Debug.DrawLine(gridLayout.CellToWorld(start.position), gridLayout.CellToWorld(goal.position), Color.blue, 1);
+            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(adjacentTiles[i].position.x+1,adjacentTiles[i].position.y,adjacentTiles[i].position.z)), gridLayout.CellToWorld(adjacentTiles[i].position), Color.red, 1);
+            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(adjacentTiles[i].position.x,adjacentTiles[i].position.y+1,adjacentTiles[i].position.z)), gridLayout.CellToWorld(adjacentTiles[i].position), Color.red, 1);
+            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(adjacentTiles[i].position.x+1,adjacentTiles[i].position.y+1,adjacentTiles[i].position.z)), gridLayout.CellToWorld(new Vector3Int(adjacentTiles[i].position.x+1,adjacentTiles[i].position.y,adjacentTiles[i].position.z)), Color.red, 1);
+            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(adjacentTiles[i].position.x+1,adjacentTiles[i].position.y+1,adjacentTiles[i].position.z)), gridLayout.CellToWorld(new Vector3Int(adjacentTiles[i].position.x,adjacentTiles[i].position.y+1,adjacentTiles[i].position.z)), Color.red, 1);
+        
+        }
+        
+        checkedPositions.Add(currentNode.position);
+        checkQueue = checkQueue.Distinct().ToList();
+        checkedPositions = checkedPositions.Distinct().ToList();
     }
 
-    void getGoalNode()
+    float calculateCost(Node thisNode)
     {
-        for (int i = 0; i < checkedNodes.Count(); i++)
-        {
-            if (checkedNodes[i].position == goal)
-            {
-                goalNode = checkedNodes[i];
-                finalPath.Add(goal);
-            }
-        }
-        backtrackDone = false;
-        //Debug.Log(backtrackDone);
+        float cost = thisNode.TotalCost;
+        cost =+ Vector3.Distance(thisNode.position, goal.position);
+        //cost =+ Vector3.Distance(thisNode.position, start.position);
+        return cost;
     }
 }
