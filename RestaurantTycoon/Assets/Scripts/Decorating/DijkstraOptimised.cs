@@ -182,10 +182,10 @@ public class DijkstraOptimised : MonoBehaviour
             checkQueue.Add(adjacentTiles[i]);
             //visualise pathfinding
             Debug.DrawLine(gridLayout.CellToWorld(start), gridLayout.CellToWorld(goal), Color.blue, 1);
-            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(adjacentTiles[i].position.x+1,adjacentTiles[i].position.y,adjacentTiles[i].position.z)), gridLayout.CellToWorld(adjacentTiles[i].position), Color.red, 1);
-            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(adjacentTiles[i].position.x,adjacentTiles[i].position.y+1,adjacentTiles[i].position.z)), gridLayout.CellToWorld(adjacentTiles[i].position), Color.red, 1);
-            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(adjacentTiles[i].position.x+1,adjacentTiles[i].position.y+1,adjacentTiles[i].position.z)), gridLayout.CellToWorld(new Vector3Int(adjacentTiles[i].position.x+1,adjacentTiles[i].position.y,adjacentTiles[i].position.z)), Color.red, 1);
-            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(adjacentTiles[i].position.x+1,adjacentTiles[i].position.y+1,adjacentTiles[i].position.z)), gridLayout.CellToWorld(new Vector3Int(adjacentTiles[i].position.x,adjacentTiles[i].position.y+1,adjacentTiles[i].position.z)), Color.red, 1);
+            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(adjacentTiles[i].position.x+1,adjacentTiles[i].position.y,adjacentTiles[i].position.z)), gridLayout.CellToWorld(adjacentTiles[i].position), Color.red, 5);
+            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(adjacentTiles[i].position.x,adjacentTiles[i].position.y+1,adjacentTiles[i].position.z)), gridLayout.CellToWorld(adjacentTiles[i].position), Color.red, 5);
+            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(adjacentTiles[i].position.x+1,adjacentTiles[i].position.y+1,adjacentTiles[i].position.z)), gridLayout.CellToWorld(new Vector3Int(adjacentTiles[i].position.x+1,adjacentTiles[i].position.y,adjacentTiles[i].position.z)), Color.red, 5);
+            Debug.DrawLine(gridLayout.CellToWorld(new Vector3Int(adjacentTiles[i].position.x+1,adjacentTiles[i].position.y+1,adjacentTiles[i].position.z)), gridLayout.CellToWorld(new Vector3Int(adjacentTiles[i].position.x,adjacentTiles[i].position.y+1,adjacentTiles[i].position.z)), Color.red, 5);
         
         }
         checkedNodes.Add(currentNode);
