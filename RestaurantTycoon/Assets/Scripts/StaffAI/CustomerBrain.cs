@@ -7,7 +7,7 @@ public class CustomerBrain : MonoBehaviour
 {
     TilemapToMovement movement;
     public TileBase[] chairs;
-    Dijkstra pathFinder;
+    DijkstraOptimised pathFinder;
     Vector3Int goal;
     public GridLayout gridLayout;
     Transform myTransform;
@@ -16,17 +16,18 @@ public class CustomerBrain : MonoBehaviour
     void Start()
     {
         movement = GetComponent<TilemapToMovement>();
-        goal = new Vector3Int(16, -2, 0);
+        goal = new Vector3Int();
         myTransform = GetComponent<Transform>();
-        pathFinder = GetComponent<Dijkstra>();
+        pathFinder = GetComponent<DijkstraOptimised>();
         //findChair();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("f"))
+        if (Input.GetKeyDown("r"))
         {
+            findChair();
             move();
         }
     }
@@ -41,7 +42,6 @@ public class CustomerBrain : MonoBehaviour
                 if (locate.tiles[i].tileType.name == chairs[j].name)
                 {
                     goal = locate.tiles[i].position;
-                    Debug.Log(goal);
                     i = locate.tiles.Count;
                     break;
                 }
@@ -52,6 +52,6 @@ public class CustomerBrain : MonoBehaviour
     void move()
     {
         movement.Start();
-        pathFinder.startProcess(goal, gridLayout.WorldToCell(myTransform.position));
+        pathFinder.startProcess(gridLayout.WorldToCell(myTransform.position), goal, true);
     }
 }

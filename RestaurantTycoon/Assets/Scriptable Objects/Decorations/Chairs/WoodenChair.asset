@@ -18,7 +18,7 @@ MonoBehaviour:
   price: 25
   menuType: TablesChairs
   tile:
-  - {fileID: 11400000, guid: acdfdf7382cbb5c418083f77c362b6f0, type: 2}
+  - {fileID: 11400000, guid: b73c72beffe8e12439bcb7f18aaa4258, type: 2}
   - {fileID: 11400000, guid: b430cc7b89bd2aa489cf0b87d6d756a3, type: 2}
   - {fileID: 11400000, guid: 5b0c83d6c1d78ea4fb3cfd5e3310cb2d, type: 2}
   - {fileID: 11400000, guid: afe7f2b507c13f147bc7d495198366d8, type: 2}

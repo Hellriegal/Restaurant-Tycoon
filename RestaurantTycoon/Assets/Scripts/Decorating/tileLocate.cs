@@ -5,6 +5,9 @@ using UnityEngine.Tilemaps;
 using System;
 using System.Linq;
 
+
+//Gets all tiles in the tileMap
+
 public class tileLocate : MonoBehaviour
 {
     [System.Serializable]

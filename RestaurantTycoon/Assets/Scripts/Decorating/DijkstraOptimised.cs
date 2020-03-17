@@ -34,16 +34,20 @@ public class DijkstraOptimised : MonoBehaviour
     public List<Node> checkQueue;
     public List<Node> adjacentTiles;
     public List<Vector3Int> pathBack;
+    public List<Vector3Int> goals;
 
     Vector3Int start;
     Vector3Int goal;
+    Vector3Int furnitureGoal;
 
+    bool isFurnitureGoal;
     bool goalFound;
     public bool backtrackDone;
     
     void Start()
     {
         //Initialise everything here so that I can restart the process
+        goals = new List<Vector3Int>();
         obstacles = new List<Vector3Int>();
         pathBack = new List<Vector3Int>();
         checkedNodes = new List<Node>();
@@ -53,17 +57,33 @@ public class DijkstraOptimised : MonoBehaviour
         goalFound = false;
         //tileLocate to get all occupied furniture tiles to use as obstacles.
         locate = tilemap.gameObject.GetComponent<tileLocate>();
+        goals.Add(goal);
         locate.Start();
         locate.getAllTilePositions();
         addTilesToPrevious();
         checkQueue.Add(new Node(0, start, start));
+        isFurnitureGoal = false;
     }
 
-    public void startProcess(Vector3Int startPosition, Vector3Int goalPosition)
+    public void startProcess(Vector3Int startPosition, Vector3Int goalPosition, bool isFurniture)
     {
         start = startPosition;
         goal = goalPosition;
         Start();
+        if (isFurniture == true)
+        {
+            isFurnitureGoal = true;
+            furnitureGoal = goal;
+            getAdjacentTiles(new Node(0, goal, goal));
+            for (int i = 0; i < checkQueue.Count(); i++)
+            {
+                goals.Add(checkQueue[i].position);
+                Debug.Log(checkQueue[i].position);
+            }
+            checkQueue.Clear();
+            goals.Add(goal);
+            checkQueue.Add(new Node(0, start, start));
+        }
         search();
     }
 
@@ -94,14 +114,22 @@ public class DijkstraOptimised : MonoBehaviour
     {
         for (int i = 0; i < 700; i++)
         {
-            sort();  
-            if (checkQueue[0].position == goal)
+            sort();
+            for (int j = 0; j < goals.Count(); j++)
             {
-                checkedNodes.Add(checkQueue[0]);
-                Debug.Log("Goal Found");
-                goalFound = true;
-                backtrack();
-                break;
+                if (checkQueue[0].position == goals[j])
+                {
+                    goal = goals[j];
+                    checkedNodes.Add(checkQueue[0]);
+                    goalFound = true;
+                    if (isFurnitureGoal == true)
+                    {
+                        goal = furnitureGoal;
+                        checkedNodes.Add(new Node (0, furnitureGoal, checkQueue[0].position));
+                    }
+                    backtrack();
+                    return;
+                }
             }
             pastPositionClear();
             getAdjacentTiles(checkQueue[0]);
@@ -175,7 +203,7 @@ public class DijkstraOptimised : MonoBehaviour
             }
         }
         
-        //calculate cost then add to checkQueue and checkedNodes
+        //calculate cost then add to checkQueue
         for (int i = 0; i < adjacentTiles.Count(); i++)
         {
             adjacentTiles[i] = new Node (calculateCost(adjacentTiles[i]), adjacentTiles[i].position, adjacentTiles[i].path);

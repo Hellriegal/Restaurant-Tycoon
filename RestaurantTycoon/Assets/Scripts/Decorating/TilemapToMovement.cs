@@ -18,6 +18,7 @@ public class TilemapToMovement : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
+        path = new List<Vector3Int>();
         pathfinder = GetComponent<DijkstraOptimised>();
         counter = 0;
         updateCounter = true;
@@ -50,12 +51,12 @@ public class TilemapToMovement : MonoBehaviour
         if (Input.GetKeyDown("9"))
         {
             Start();
-            pathfinder.startProcess(gridLayout.WorldToCell(myTransform.position), new Vector3Int (10,15,0));
+            pathfinder.startProcess(gridLayout.WorldToCell(myTransform.position), new Vector3Int (6,14,0), false);
         }
         else if (Input.GetKeyDown("0"))
         {
             Start();
-            pathfinder.startProcess(gridLayout.WorldToCell(myTransform.position), new Vector3Int (0,0,0));
+            pathfinder.startProcess(gridLayout.WorldToCell(myTransform.position), new Vector3Int (16,-1,0), false);
         }
     }
 
