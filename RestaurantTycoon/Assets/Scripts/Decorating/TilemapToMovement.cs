@@ -15,9 +15,11 @@ public class TilemapToMovement : MonoBehaviour
     bool checkMovement;
     bool updateCounter;
     public float speed = 1;
+    public bool atGoal;
     // Start is called before the first frame update
     public void Start()
     {
+        atGoal = false;
         path = new List<Vector3Int>();
         pathfinder = GetComponent<DijkstraOptimised>();
         counter = 0;
@@ -65,18 +67,17 @@ public class TilemapToMovement : MonoBehaviour
         if (counter == 0)
         {
             checkMovement = false;
+            atGoal = true;
+            counter = -1;
         }
-        else
+        else if (counter > 0)
         {
-            if (counter > 0)
-            {
-                myTransform.position = Vector3.MoveTowards(myTransform.position, tileToWorld(path[counter-1]), speed);
-            }
+           myTransform.position = Vector3.MoveTowards(myTransform.position, tileToWorld(path[counter-1]), speed);
             if (myTransform.position == tileToWorld(path[counter-1]))
             {
                 counter--;
             }
-        }
+        }        
     }
 
     public Vector3 tileToWorld(Vector3Int pos)

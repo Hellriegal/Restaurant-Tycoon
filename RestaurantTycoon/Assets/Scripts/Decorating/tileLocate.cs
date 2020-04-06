@@ -15,10 +15,12 @@ public class tileLocate : MonoBehaviour
     {
         public TileBase tileType;
         public Vector3Int position;
-        public TileInfo(TileBase tile, Vector3Int pos)
+        public bool occupied;
+        public TileInfo(TileBase tile, Vector3Int pos, bool isOccupied)
         {
             tileType = tile;
             position = pos;
+            occupied = isOccupied;
         }
     }
     Tilemap tilemap;
@@ -54,7 +56,7 @@ public class tileLocate : MonoBehaviour
             {
                 if (tilemap.GetTile(new Vector3Int(i, j, 0)))
                 {
-                    tiles.Add (new TileInfo (tilemap.GetTile(new Vector3Int(i, j, 0)), new Vector3Int(i, j, 0)));
+                    tiles.Add (new TileInfo (tilemap.GetTile(new Vector3Int(i, j, 0)), new Vector3Int(i, j, 0), false));
                     tilesPos.Add(new Vector3Int(i, j, 0));
                 }
             }

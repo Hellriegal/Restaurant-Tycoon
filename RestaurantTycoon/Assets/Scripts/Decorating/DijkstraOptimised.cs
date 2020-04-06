@@ -78,7 +78,6 @@ public class DijkstraOptimised : MonoBehaviour
             for (int i = 0; i < checkQueue.Count(); i++)
             {
                 goals.Add(checkQueue[i].position);
-                Debug.Log(checkQueue[i].position);
             }
             checkQueue.Clear();
             goals.Add(goal);

@@ -12,24 +12,25 @@ public class CustomerBrain : MonoBehaviour
     public GridLayout gridLayout;
     Transform myTransform;
     public tileLocate locate;
+    bool sitting;
+    bool chairFound;
+    public Customers customerBase;
     // Start is called before the first frame update
     void Start()
     {
+        chairFound = false;
+        sitting = false;
         movement = GetComponent<TilemapToMovement>();
         goal = new Vector3Int();
         myTransform = GetComponent<Transform>();
         pathFinder = GetComponent<DijkstraOptimised>();
-        //findChair();
+        findChair();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("r"))
-        {
-            findChair();
-            move();
-        }
+        checkIfSitting();
     }
 
     void findChair()
@@ -39,13 +40,28 @@ public class CustomerBrain : MonoBehaviour
         {
             for (int j = 0; j < chairs.Length; j++)
             {
-                if (locate.tiles[i].tileType.name == chairs[j].name)
+                if (locate.tiles[i].tileType.name == chairs[j].name & locate.tiles[i].occupied == false)
                 {
                     goal = locate.tiles[i].position;
+                    locate.tiles[i] = new tileLocate.TileInfo(locate.tiles[i].tileType, locate.tiles[i].position, true);
                     i = locate.tiles.Count;
+                    chairFound = true;
+                    Debug.Log("ChairFound");
                     break;
                 }
             }
+        }
+        move();
+    }
+
+    void checkIfSitting()
+    {
+        if (movement.atGoal == true & chairFound == true)
+        {
+            Debug.Log("sitting");
+            sitting = true;
+            customerBase.addCustomer(sitting, goal);
+            chairFound = false;
         }
     }
 
