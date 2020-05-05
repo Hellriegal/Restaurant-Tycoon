@@ -42,6 +42,7 @@ public class DijkstraOptimised : MonoBehaviour
 
     bool isFurnitureGoal;
     bool goalFound;
+    bool stopShort;
     public bool backtrackDone;
     
     void Start()
@@ -65,10 +66,11 @@ public class DijkstraOptimised : MonoBehaviour
         isFurnitureGoal = false;
     }
 
-    public void startProcess(Vector3Int startPosition, Vector3Int goalPosition, bool isFurniture)
+    public void startProcess(Vector3Int startPosition, Vector3Int goalPosition, bool isFurniture, bool shortStop)
     {
         start = startPosition;
         goal = goalPosition;
+        stopShort = shortStop;
         Start();
         if (isFurniture == true)
         {
@@ -230,7 +232,10 @@ public class DijkstraOptimised : MonoBehaviour
     void backtrack()
     {
         Node goalNode = checkedNodes[checkedNodes.Count()-1];
-        pathBack.Add(goal);
+        if (stopShort == false)
+        {
+            pathBack.Add(goal);
+        }
         while (goalNode.position != start)
         {
             for (int i = 0; i < checkedNodes.Count(); i++)

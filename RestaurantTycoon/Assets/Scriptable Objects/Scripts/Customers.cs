@@ -9,12 +9,16 @@ public class Customers : ScriptableObject
     [Serializable]
     public struct customer
     {
-        bool isSitting;
-        Vector3Int position;
+        public bool isSitting;
+        public bool hasBeenServed;
+        public bool hasFinishedEating;
+        public Vector3Int position;
 
-        public customer(bool sitting, Vector3Int positionPass)
+        public customer(bool sitting, bool served, bool finishedEating, Vector3Int positionPass)
         {
             isSitting = sitting;
+            hasBeenServed = served;
+            hasFinishedEating = finishedEating;
             position = positionPass;
         }
     }
@@ -23,6 +27,6 @@ public class Customers : ScriptableObject
 
     public void addCustomer(bool sitting, Vector3Int position)
     {
-        customers.Add(new customer(sitting, position));
+        customers.Add(new customer(sitting, false, false, position));
     }
 }

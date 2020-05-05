@@ -46,7 +46,6 @@ public class CustomerBrain : MonoBehaviour
                     locate.tiles[i] = new tileLocate.TileInfo(locate.tiles[i].tileType, locate.tiles[i].position, true);
                     i = locate.tiles.Count;
                     chairFound = true;
-                    Debug.Log("ChairFound");
                     break;
                 }
             }
@@ -58,7 +57,6 @@ public class CustomerBrain : MonoBehaviour
     {
         if (movement.atGoal == true & chairFound == true)
         {
-            Debug.Log("sitting");
             sitting = true;
             customerBase.addCustomer(sitting, goal);
             chairFound = false;
@@ -68,6 +66,6 @@ public class CustomerBrain : MonoBehaviour
     void move()
     {
         movement.Start();
-        pathFinder.startProcess(gridLayout.WorldToCell(myTransform.position), goal, true);
+        pathFinder.startProcess(gridLayout.WorldToCell(myTransform.position), goal, true, false);
     }
 }

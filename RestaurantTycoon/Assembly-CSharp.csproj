@@ -45,6 +45,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scriptable Objects\Scripts\Chefs.cs" />
      <Compile Include="Assets\Scriptable Objects\Scripts\Customers.cs" />
      <Compile Include="Assets\Scriptable Objects\Scripts\DecorationItem.cs" />
      <Compile Include="Assets\Scriptable Objects\Scripts\IngredientPrices.cs" />
@@ -78,7 +79,9 @@
      <Compile Include="Assets\Scripts\Menu\getItemInfo.cs" />
      <Compile Include="Assets\Scripts\Saving\CreatePrefab.cs" />
      <Compile Include="Assets\Scripts\Saving\SaveTilemap.cs" />
+     <Compile Include="Assets\Scripts\StaffAI\ChefBrain.cs" />
      <Compile Include="Assets\Scripts\StaffAI\CustomerBrain.cs" />
+     <Compile Include="Assets\Scripts\StaffAI\WaiterAI.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/Git/Restaurant-Tycoon/RestaurantTycoon/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
