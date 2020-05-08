@@ -12,8 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f576da4a9da80a44a56149a6c5c2f7c, type: 3}
   m_Name: Customers
   m_EditorClassIdentifier: 
-  customers:
-  - isSitting: 1
-    hasBeenServed: 0
-    hasFinishedEating: 0
-    position: {x: 16, y: -2, z: 0}
+  customers: []

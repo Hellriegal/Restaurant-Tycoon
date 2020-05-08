@@ -11,14 +11,18 @@ public class Chefs : ScriptableObject
     {
         public bool atOven;
         public bool isCooking;
+        public bool finishedMeal;
         public int chefID;
+        public int orderID;
         public Vector3Int position;
 
-        public chef(bool oven, bool cooking, int ID, Vector3Int positionPass)
+        public chef(bool oven, bool cooking, bool meal, int ID, int OID, Vector3Int positionPass)
         {
             atOven = oven;
             isCooking = cooking;
+            finishedMeal = meal;
             chefID = ID;
+            orderID = OID;
             position = positionPass;
         }
     }
@@ -27,6 +31,6 @@ public class Chefs : ScriptableObject
 
     public void addChef(int ID, Vector3Int position)
     {
-        chefs.Add(new chef(false, false, ID, position));
+        chefs.Add(new chef(false, false, false, ID, 0, position));
     }
 }

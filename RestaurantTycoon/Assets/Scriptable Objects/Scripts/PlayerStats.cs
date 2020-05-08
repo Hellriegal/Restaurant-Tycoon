@@ -4,4 +4,9 @@
 public class PlayerStats : ScriptableObject
 {
    public float Money;
+
+   public void addMoney(int amount)
+   {
+      Money = Money + amount;
+   }
 }

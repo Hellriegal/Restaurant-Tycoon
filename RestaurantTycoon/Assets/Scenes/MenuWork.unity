@@ -36866,6 +36866,7 @@ MonoBehaviour:
   gridLayout: {fileID: 1086213748}
   locate: {fileID: 3265109236803327711}
   customerBase: {fileID: 11400000, guid: d38c9a4d308e14642867f4b709afc1ce, type: 2}
+  playerStats: {fileID: 11400000, guid: c90369c646e55a248b20ad2c47460dc0, type: 2}
 --- !u!114 &1921964724
 MonoBehaviour:
   m_ObjectHideFlags: 0

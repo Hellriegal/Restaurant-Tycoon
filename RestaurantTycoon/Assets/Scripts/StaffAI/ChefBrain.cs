@@ -16,6 +16,7 @@ public class ChefBrain : MonoBehaviour
     bool ovenFound;
     public Chefs chefBase;
     int ID;
+    int orderID;
     [SerializeField]
     int cookTimer;
     // Start is called before the first frame update
@@ -30,7 +31,6 @@ public class ChefBrain : MonoBehaviour
         pathFinder = GetComponent<DijkstraOptimised>();
         findOven();
         ID = chefBase.chefs.Count;
-        Debug.Log(ID);
         chefBase.addChef(ID, goal);
     }
 
@@ -71,15 +71,23 @@ public class ChefBrain : MonoBehaviour
     {
         if (movement.atGoal == true)
         {
-            chefBase.chefs[ID] = new Chefs.chef(true, chefBase.chefs[ID].isCooking, ID, chefBase.chefs[ID].position);
+            chefBase.chefs[ID] = new Chefs.chef(true, chefBase.chefs[ID].isCooking, chefBase.chefs[ID].finishedMeal, ID, chefBase.chefs[ID].orderID, chefBase.chefs[ID].position);
         }
     }
 
     void checkForOrder()
     {
-        if (chefBase.chefs[ID].isCooking == true)
+        if (cookTimer == 0 & chefBase.chefs[ID].isCooking == true)
         {
-            Debug.Log("time to cook");
+            cookTimer = 1000 + Random.Range(0, 500);
+        }
+        if (cookTimer != 0)
+        {
+            cookTimer--;
+            if (cookTimer == 0)
+            {
+                chefBase.chefs[ID] = new Chefs.chef(chefBase.chefs[ID].atOven, chefBase.chefs[ID].isCooking, true, ID, chefBase.chefs[ID].orderID, chefBase.chefs[ID].position);
+            }
         }
     }
 }

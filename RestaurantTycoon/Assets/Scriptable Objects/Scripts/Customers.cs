@@ -12,21 +12,45 @@ public class Customers : ScriptableObject
         public bool isSitting;
         public bool hasBeenServed;
         public bool hasFinishedEating;
+        public bool hasOrdered;
+        public int customerID;
         public Vector3Int position;
 
-        public customer(bool sitting, bool served, bool finishedEating, Vector3Int positionPass)
+        public customer(bool sitting, bool served, bool finishedEating, bool ordered, int ID, Vector3Int positionPass)
         {
             isSitting = sitting;
             hasBeenServed = served;
             hasFinishedEating = finishedEating;
+            hasOrdered = ordered;
+            customerID = ID;
             position = positionPass;
         }
     }
 
     public List<customer> customers;
 
-    public void addCustomer(bool sitting, Vector3Int position)
+    public void addCustomer(bool sitting, int ID, Vector3Int position)
     {
-        customers.Add(new customer(sitting, false, false, position));
+        customers.Add(new customer(sitting, false, false, false, ID, position));
+    }
+
+    public int getListIndex(int id)
+    {
+        if (customers.Count > 0)
+        {
+            for (int i = 0; i < customers.Count; i++)
+            {
+                if (customers[i].customerID == id)
+                {
+                    return i;
+                }
+            }
+            return 0;
+        }
+        else
+        {
+            return 0;
+        }
+        
     }
 }

@@ -15,9 +15,13 @@ public class CustomerBrain : MonoBehaviour
     bool sitting;
     bool chairFound;
     public Customers customerBase;
+    int ID;
+    public PlayerStats playerStats;
+    int eatTimer;
     // Start is called before the first frame update
     void Start()
     {
+        eatTimer = 0;
         chairFound = false;
         sitting = false;
         movement = GetComponent<TilemapToMovement>();
@@ -31,6 +35,33 @@ public class CustomerBrain : MonoBehaviour
     void Update()
     {
         checkIfSitting();
+        checkIfServed();
+        eat();
+    }
+
+    void checkIfServed()
+    {
+        if (customerBase.customers.Count > 0)
+        {
+            int index = customerBase.getListIndex(ID);
+            if (customerBase.customers[index].hasBeenServed == true & eatTimer == 0)
+            {
+                eatTimer = 300 + Random.Range(0, 500);
+            }
+        }
+    }
+
+    void eat()
+    {
+        if (eatTimer > 1)
+        {
+            eatTimer--;
+        }
+        if (eatTimer == 1)
+        {
+            eatTimer = 0;
+            playerStats.addMoney(6);
+        }
     }
 
     void findChair()
@@ -53,12 +84,36 @@ public class CustomerBrain : MonoBehaviour
         move();
     }
 
+    int generateID()
+    {
+        int randomID = 0;
+        bool IDFound = false;
+        while (IDFound == false)
+        {
+            randomID = UnityEngine.Random.Range(1000, 9999);
+            if (customerBase.customers.Count == 0)
+            {
+                IDFound = true;
+            }
+            for (int i = 0; i < customerBase.customers.Count; i++)
+            {
+                if (randomID != customerBase.customers[i].customerID)
+                {
+                    IDFound = true;
+                    break;
+                }
+            }
+        }
+        return randomID;
+    }
+
     void checkIfSitting()
     {
+        ID = generateID();
         if (movement.atGoal == true & chairFound == true)
         {
             sitting = true;
-            customerBase.addCustomer(sitting, goal);
+            customerBase.addCustomer(sitting, ID, goal);
             chairFound = false;
         }
     }
