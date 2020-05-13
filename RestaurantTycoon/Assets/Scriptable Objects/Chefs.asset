@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc55d9f049e4ef4980093ef9219b378, type: 3}
   m_Name: Chefs
   m_EditorClassIdentifier: 
-  chefs: []
+  chefs:
+  - atOven: 1
+    isCooking: 0
+    finishedMeal: 0
+    chefID: 0
+    orderID: 0
+    position: {x: 6, y: -2, z: 0}

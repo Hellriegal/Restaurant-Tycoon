@@ -14,6 +14,7 @@ public class WaiterAI : MonoBehaviour
     bool performingTask;
     [SerializeField]
     int takeOrderCounter;
+    [SerializeField]
     int pickupCounter;
     public Chefs chefBase;
     [SerializeField]
@@ -38,12 +39,12 @@ public class WaiterAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        pickTask();
         checkForTasks();
         if (takingOrder == true)
         {
             takeOrderCount();
         }
-        pickTask();
     }
 
     void pickTask()
@@ -52,11 +53,13 @@ public class WaiterAI : MonoBehaviour
         {
             switch(tasks[0])
             {
-                case "tellChef":
+                case "pickChef":
                 pickChef();
                 break;
-                case "walkToChef":
+                case "tellChef":
                 tellChefOrder();
+                break;
+                case "tellOrder":
                 break;
                 case "pickUpOrder":
                 orderPickUp();
@@ -73,10 +76,10 @@ public class WaiterAI : MonoBehaviour
     {
         if (movement.atGoal == true)
         {
+            Debug.Log("at goal");
             int id = CustomerBase.getListIndex(customerID);
             CustomerBase.customers[id] = new Customers.customer(CustomerBase.customers[id].isSitting, true, CustomerBase.customers[id].hasFinishedEating, CustomerBase.customers[id].hasOrdered, CustomerBase.customers[id].customerID, CustomerBase.customers[id].position);
             tasks.RemoveAt(0);
-        Debug.Log("hit");
         }
     }
 
@@ -90,8 +93,10 @@ public class WaiterAI : MonoBehaviour
             }
             else if (pickupCounter == 0)
             {
+                pickupCounter--;
+                Debug.Log("order pickup");  
                 customerID = chefBase.chefs[chefID].orderID;
-                tasks.Add("deliverOrder");
+                chefBase.chefs[chefID] = new Chefs.chef(chefBase.chefs[chefID].atOven, false, false, chefBase.chefs[chefID].orderID, 0, chefBase.chefs[chefID].position);
                 tasks.RemoveAt(0);
             }
         }
@@ -104,6 +109,7 @@ public class WaiterAI : MonoBehaviour
             if (chefBase.chefs[i].isCooking == false & chefBase.chefs[i].atOven == true)
             {
                 findChef(chefBase.chefs[i].position);
+                tasks.Add("tellChef");
                 break;
             }
         }
@@ -118,7 +124,10 @@ public class WaiterAI : MonoBehaviour
             {
                 if (chefBase.chefs[i].finishedMeal == true)
                 {
-                    tasks.Add("pickUpOrder");   
+                    tasks.Add("findChef");
+                    tasks.Add("pickUpOrder");
+                    tasks.Add("deliverOrder");   
+                    findingCustomer = false;
                     chefID = chefBase.chefs[i].chefID;
                     findChef(chefBase.chefs[i].position);
                     pickupCounter = 100 + Random.Range(0, 200);       
@@ -132,6 +141,7 @@ public class WaiterAI : MonoBehaviour
                 {
                     customerID = CustomerBase.customers[i].customerID;
                     tasks.Add("takeOrder");
+                    tasks.Add("pickChef");
                     findCustomer();
                     takeOrder();
                     break;
@@ -146,6 +156,7 @@ public class WaiterAI : MonoBehaviour
         {
             findingCustomer = true;
             movement.Start();
+            Debug.Log( CustomerBase.customers[CustomerBase.getListIndex(customerID)].position);
             pathFinder.startProcess(gridLayout.WorldToCell(myTransform.position), CustomerBase.customers[CustomerBase.getListIndex(customerID)].position, true, true);
         }
     }
@@ -164,11 +175,11 @@ public class WaiterAI : MonoBehaviour
         takeOrderCounter--;
             if (takeOrderCounter == 0)
             {
+                takeOrderCounter--;
                 int customerIndex = CustomerBase.getListIndex(customerID);
                 takingOrder = false;
                 CustomerBase.customers[customerIndex] = new Customers.customer(CustomerBase.customers[customerIndex].isSitting, CustomerBase.customers[customerIndex].hasBeenServed, 
                 CustomerBase.customers[customerIndex].hasFinishedEating, true, CustomerBase.customers[customerIndex].customerID, CustomerBase.customers[customerIndex].position);
-                tasks.Add("tellChef");
                 tasks.RemoveAt(0);
             }
     }
@@ -182,8 +193,8 @@ public class WaiterAI : MonoBehaviour
                 chefID = chefBase.chefs[i].chefID;
                 movement.Start();
                 pathFinder.startProcess(gridLayout.WorldToCell(myTransform.position), chefBase.chefs[i].position, true, true);
-                tasks.Add("walkToChef");
                 tasks.RemoveAt(0);
+                break;
             }
         }
     }
