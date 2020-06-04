@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+//The script to create a database of available ingredients prices
 [CreateAssetMenu(fileName = "Ingredient Prices", menuName = "Scriptable Objects/Ingredient Prices", order = 1)]
 public class IngredientPrices : ScriptableObject
 {

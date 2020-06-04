@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Used for enabling the child of this scripts holder. Is also being used for handling of the runtimeBrush
 public class enableChild : MonoBehaviour
 {
     public GameObject[] objects;

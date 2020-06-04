@@ -102,6 +102,11 @@ public class DijkstraOptimised : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        goalFoundCheck();
+    }
+
+    void goalFoundCheck()
+    {
         if (goalFound == true)
         {
             backtrack();
@@ -224,13 +229,14 @@ public class DijkstraOptimised : MonoBehaviour
         checkedNodes = checkedNodes.Distinct().ToList();
     }
 
+    //Cost = distance between Node and goal + distance between Node and start
     float calculateCost(Node thisNode)
     {
         float cost = thisNode.TotalCost;
         cost = Vector3.Distance(thisNode.position, goal) + Vector3.Distance(thisNode.position, start);
         return cost;
     }
-
+    
     void backtrack()
     {
         Node goalNode = checkedNodes[checkedNodes.Count()-1];

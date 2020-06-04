@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 
+//Assigns the layout for generic menu items as well as numerous miscellaneous functions regarding these menus.
 public class LayoutManager : MonoBehaviour
 {
     Transform myTransform;

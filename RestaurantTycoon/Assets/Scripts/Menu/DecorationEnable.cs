@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Allows the tileMap deocration process to occur when the decoration button is clicked
 public class DecorationEnable : MonoBehaviour
 {
     Button button;

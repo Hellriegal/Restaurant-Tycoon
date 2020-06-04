@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+//Manages chefNPC related processes, such as oven location, cooking times, etc.
 public class ChefBrain : MonoBehaviour
 {
     TilemapToMovement movement;
@@ -12,8 +13,6 @@ public class ChefBrain : MonoBehaviour
     public GridLayout gridLayout;
     Transform myTransform;
     public tileLocate locate;
-    bool sitting;
-    bool ovenFound;
     public Chefs chefBase;
     int ID;
     int orderID;
@@ -23,8 +22,6 @@ public class ChefBrain : MonoBehaviour
     void Start()
     {
         cookTimer = 0;
-        ovenFound = false;
-        sitting = false;
         movement = GetComponent<TilemapToMovement>();
         goal = new Vector3Int();
         myTransform = GetComponent<Transform>();
@@ -53,7 +50,6 @@ public class ChefBrain : MonoBehaviour
                     goal = locate.tiles[i].position;
                     locate.tiles[i] = new tileLocate.TileInfo(locate.tiles[i].tileType, locate.tiles[i].position, true);
                     i = locate.tiles.Count;
-                    ovenFound = true;
                     break;
                 }
             }
@@ -81,11 +77,12 @@ public class ChefBrain : MonoBehaviour
         {
             cookTimer = 1000 + Random.Range(0, 500);
         }
-        if (cookTimer != 0)
+        if (cookTimer > 0)
         {
             cookTimer--;
             if (cookTimer == 0)
             {
+                cookTimer = -1;
                 chefBase.chefs[ID] = new Chefs.chef(chefBase.chefs[ID].atOven, chefBase.chefs[ID].isCooking, true, ID, chefBase.chefs[ID].orderID, chefBase.chefs[ID].position);
             }
         }

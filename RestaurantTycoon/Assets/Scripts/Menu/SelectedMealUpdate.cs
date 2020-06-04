@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Used to update the Menu lists of the respective LayoutManager
 public class SelectedMealUpdate : MonoBehaviour
 {
     LayoutManager layoutManager;

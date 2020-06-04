@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Manages data for the decoration menu
 public class FurnitureCategory : MonoBehaviour
 {
     public LayoutManager layoutManager;

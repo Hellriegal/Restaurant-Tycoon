@@ -2,6 +2,7 @@
 using System.Reflection;
 using System;
 
+//The script to create a database of ingredient quantities
 [CreateAssetMenu(fileName = "Inventory Data", menuName = "Scriptable Objects/Inventory Data", order = 1)]
 public class InventoryData : ScriptableObject
 {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Generic script for sounds trigger by clicking buttons
 public class MenuButton : MonoBehaviour
 {
     public GameObject objectToEnable;

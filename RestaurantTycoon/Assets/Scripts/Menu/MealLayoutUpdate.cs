@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+//The specific layout manager for the meal menu
 public class MealLayoutUpdate: MonoBehaviour
 {
     LayoutManager layoutManager;

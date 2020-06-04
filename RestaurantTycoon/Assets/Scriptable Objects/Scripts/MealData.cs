@@ -3,6 +3,7 @@ using System.Reflection;
 using System;
 using System.Collections.Generic;
 
+//The script to create a database of selected meals
 [CreateAssetMenu(fileName = "Meal Data", menuName = "Scriptable Objects/Meal Data", order = 1)]
 public class MealData : ScriptableObject
 {

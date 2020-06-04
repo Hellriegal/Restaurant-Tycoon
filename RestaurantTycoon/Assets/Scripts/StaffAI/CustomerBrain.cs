@@ -16,11 +16,14 @@ public class CustomerBrain : MonoBehaviour
     Transform myTransform;
     public tileLocate locate;
     bool sitting;
+    [SerializeField]
     bool chairFound;
     public Customers customerBase;
     int ID;
     public PlayerStats playerStats;
     int eatTimer;
+    int index;
+    public Tilemap tilemap;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,9 +34,9 @@ public class CustomerBrain : MonoBehaviour
         goal = new Vector3Int();
         myTransform = GetComponent<Transform>();
         pathFinder = GetComponent<DijkstraOptimised>();
-        findChair();
         start = gridLayout.WorldToCell(myTransform.position);
         ID = generateID();
+        index = customerBase.getListIndex(ID);
     }
 
     // Update is called once per frame
@@ -42,13 +45,14 @@ public class CustomerBrain : MonoBehaviour
         checkIfSitting();
         checkIfServed();
         eat();
+        findChair();
+        checkForChairAtPosition();
     }
 
     void checkIfServed()
     {
         if (customerBase.customers.Count > 0)
         {
-            int index = customerBase.getListIndex(ID);
             if (customerBase.customers[index].hasBeenServed == true & eatTimer == 0)
             {
                 eatTimer = 300 + Random.Range(0, 500);
@@ -72,22 +76,42 @@ public class CustomerBrain : MonoBehaviour
 
     void findChair()
     {
-        locate.getAllTilePositions();
-        for (int i = 0; i < locate.tiles.Count; i++)
+        if (chairFound == false & customerBase.customers[index].isSitting == false)
         {
-            for (int j = 0; j < chairs.Length; j++)
+            for (int i = 0; i < locate.tiles.Count; i++)
             {
-                if (locate.tiles[i].tileType.name == chairs[j].name & locate.tiles[i].occupied == false)
+                for (int j = 0; j < chairs.Length; j++)
                 {
-                    goal = locate.tiles[i].position;
-                    locate.tiles[i] = new tileLocate.TileInfo(locate.tiles[i].tileType, locate.tiles[i].position, true);
-                    i = locate.tiles.Count;
-                    chairFound = true;
-                    break;
+                    if (locate.tiles[i].tileType.name == chairs[j].name & locate.tiles[i].occupied == false)
+                    {
+                        goal = locate.tiles[i].position;
+                        locate.tiles[i] = new tileLocate.TileInfo(locate.tiles[i].tileType, locate.tiles[i].position, true);
+                        i = locate.tiles.Count;
+                        chairFound = true;
+                        move();
+                        return;
+                    }
                 }
             }
         }
-        move();
+    }
+
+    void checkForChairAtPosition()
+    {
+        for (int j = 0; j < chairs.Length; j++)
+                {
+                    if (tilemap.GetTile(gridLayout.WorldToCell(myTransform.position)) != null)
+                    {
+                        if (tilemap.GetTile(gridLayout.WorldToCell(myTransform.position)).name == chairs[j].name)
+                        {
+                            customerBase.customers[index] = new Customers.customer(true, customerBase.customers[index].hasBeenServed, customerBase.customers[index].hasFinishedEating, customerBase.customers[index].hasOrdered, customerBase.customers[index].customerID, goal);
+                        }
+                    }
+                    else if (tilemap.GetTile(gridLayout.WorldToCell(myTransform.position)) == null)
+                    {
+                        customerBase.customers[index] = new Customers.customer(false, customerBase.customers[index].hasBeenServed, customerBase.customers[index].hasFinishedEating, customerBase.customers[index].hasOrdered, customerBase.customers[index].customerID, goal);
+                    }
+                }
     }
 
     int generateID()
@@ -110,7 +134,7 @@ public class CustomerBrain : MonoBehaviour
                 }
             }
         }
-        Debug.Log("Customer ID = " + randomID);
+        customerBase.addCustomer(sitting, ID, goal);
         return randomID;
     }
 
@@ -119,7 +143,7 @@ public class CustomerBrain : MonoBehaviour
         if (movement.atGoal == true & chairFound == true)
         {
             sitting = true;
-            customerBase.addCustomer(sitting, ID, goal);
+            customerBase.customers[index] = new Customers.customer(true, customerBase.customers[index].hasBeenServed, customerBase.customers[index].hasFinishedEating, customerBase.customers[index].hasOrdered, customerBase.customers[index].customerID, goal);
             chairFound = false;
         }
     }
@@ -135,5 +159,6 @@ public class CustomerBrain : MonoBehaviour
         Vector3Int goalHold = goal;
         goal = start;
         start = goalHold;
+        move();
     }
 }

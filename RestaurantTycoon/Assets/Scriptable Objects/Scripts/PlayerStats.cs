@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+//The script to create a database of Player Statistics
 [CreateAssetMenu(fileName = "Player Stats", menuName = "Scriptable Objects/Player Stats", order = 1)]
 public class PlayerStats : ScriptableObject
 {

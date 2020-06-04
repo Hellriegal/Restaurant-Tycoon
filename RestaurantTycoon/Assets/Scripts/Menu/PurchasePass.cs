@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Passes information from the holding object to the getItemInfo script
 public class PurchasePass : MonoBehaviour
 {
     getItemInfo itemInfo;

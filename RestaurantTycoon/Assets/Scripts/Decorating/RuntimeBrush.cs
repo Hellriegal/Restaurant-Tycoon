@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+//Used to update tileMaps by adding tiles during runtime
 public class RuntimeBrush : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -17,6 +18,7 @@ public class RuntimeBrush : MonoBehaviour
     public List<Tile> tiles;
     int tileCounter = 0;
     PurchasePass purchasePass;
+    public tileLocate locate;
 
     void Start()
     {
@@ -111,7 +113,7 @@ public class RuntimeBrush : MonoBehaviour
         if (Input.GetMouseButtonDown(0) & hit == false)
         {
             tilemap.SetTile(grid.WorldToCell(myCamera.ScreenToWorldPoint(Input.mousePosition)), tile);
-
+            locate.Start();
         }
         if (Input.GetMouseButtonDown(1))
         {

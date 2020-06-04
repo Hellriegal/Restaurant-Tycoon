@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Used to update the money UI element
 public class Money : MonoBehaviour
 {
     public PlayerStats playerStats;

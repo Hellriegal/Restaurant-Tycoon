@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Used to update the "Meal Data" scriptableObject
 public class CategoryFunction : MonoBehaviour
 {
     Button button;

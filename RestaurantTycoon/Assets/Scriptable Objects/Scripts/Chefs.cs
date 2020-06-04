@@ -3,6 +3,7 @@ using System.Reflection;
 using System;
 using System.Collections.Generic;
 
+//The script to create a database of chefs
 [CreateAssetMenu(fileName = "Chefs", menuName = "Scriptable Objects/Chefs", order = 1)]
 public class Chefs : ScriptableObject
 {
@@ -28,6 +29,11 @@ public class Chefs : ScriptableObject
     }
 
     public List<chef> chefs;
+
+    public void OnEnable()
+    {
+        chefs = new List<chef>();
+    }
 
     public void addChef(int ID, Vector3Int position)
     {

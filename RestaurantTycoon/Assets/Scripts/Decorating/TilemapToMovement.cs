@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 using System;
 using System.Linq;
 
+//Converts a list of tilemap positions to movement (moves the object to each position sequentially)
 public class TilemapToMovement : MonoBehaviour
 {
     Transform myTransform;

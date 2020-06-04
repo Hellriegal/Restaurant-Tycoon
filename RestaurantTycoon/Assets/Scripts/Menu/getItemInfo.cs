@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Assigns data for the ingredient and meal menus
 public class getItemInfo : MonoBehaviour
 {
     public MenuItem menuItem;

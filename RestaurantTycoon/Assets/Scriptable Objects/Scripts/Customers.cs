@@ -3,6 +3,7 @@ using System.Reflection;
 using System;
 using System.Collections.Generic;
 
+//The script to create a database of customers
 [CreateAssetMenu(fileName = "Customers", menuName = "Scriptable Objects/Customers", order = 1)]
 public class Customers : ScriptableObject
 {
@@ -28,6 +29,11 @@ public class Customers : ScriptableObject
     }
 
     public List<customer> customers;
+
+    public void OnEnable()
+    {
+        customers = new List<customer>();
+    }
 
     public void addCustomer(bool sitting, int ID, Vector3Int position)
     {

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+//The script containing the layout of generic menus
 public class MenuLayout : ScriptableObject
 {
     int[,] map = new int [3,6]

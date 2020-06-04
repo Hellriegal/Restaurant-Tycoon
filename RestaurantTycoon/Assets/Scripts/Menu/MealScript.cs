@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//handles events of the meal menu, adding and removing items in lists in the Meal Data scriptable object
 public class MealScript : MonoBehaviour
 {
     Button thisButton;

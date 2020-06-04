@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Reflection;
 using System;
 
+//This scripts handles purchasing with reference to PlayerStats and Inventory data, as well as sound effects of the pruchasing process.
 public class Purchase : MonoBehaviour
 {
     public PlayerStats playerStats;

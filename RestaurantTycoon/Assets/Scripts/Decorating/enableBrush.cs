@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Allows the decoration brush to be used
 public class enableBrush : MonoBehaviour
 {
     RuntimeBrush brush;
     bool isTrue = false;
     string decorationItemName = "null";
+    [SerializeField]
+    public GameObject FurnitureMenu;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +20,15 @@ public class enableBrush : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        disableBursh();
+    }
+
+    public void disableBursh()
+    {
+        if (FurnitureMenu.activeSelf == false)
+        {
+            brush.enabled = false;
+        }
     }
 
     public void toggle(string itemName)

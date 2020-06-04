@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+//Loads tile to the decoration brush
 public class loadToBrush : MonoBehaviour
 {
     getItemInfo info;
@@ -11,12 +12,6 @@ public class loadToBrush : MonoBehaviour
     void Start()
     {
         info = GetComponent<getItemInfo>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void updateList()
