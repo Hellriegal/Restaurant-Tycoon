@@ -44,10 +44,12 @@ public class DijkstraOptimised : MonoBehaviour
     bool goalFound;
     bool stopShort;
     public bool backtrackDone;
+
+    int searchLoopCount = 700;
     
     void Start()
     {
-        //Initialise everything here so that I can restart the process
+        //Initialise everything here so that I can restart the process during the runtime by calling this method
         goals = new List<Vector3Int>();
         obstacles = new List<Vector3Int>();
         pathBack = new List<Vector3Int>();
@@ -113,7 +115,7 @@ public class DijkstraOptimised : MonoBehaviour
 
     void search()
     {
-        for (int i = 0; i < 700; i++)
+        for (int i = 0; i < searchLoopCount; i++)
         {
             sort();
             for (int j = 0; j < goals.Count(); j++)

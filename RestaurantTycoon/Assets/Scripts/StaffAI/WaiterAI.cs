@@ -156,7 +156,6 @@ public class WaiterAI : MonoBehaviour
         {
             findingCustomer = true;
             movement.Start();
-            Debug.Log( CustomerBase.customers[CustomerBase.getListIndex(customerID)].position);
             pathFinder.startProcess(gridLayout.WorldToCell(myTransform.position), CustomerBase.customers[CustomerBase.getListIndex(customerID)].position, true, true);
         }
     }

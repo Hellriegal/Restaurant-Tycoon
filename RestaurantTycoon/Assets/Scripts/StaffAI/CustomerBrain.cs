@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+
+//The script handles interactions between the customer Object and the customer database; functions dealing with the specific customer is held here
 public class CustomerBrain : MonoBehaviour
 {
     TilemapToMovement movement;
     public TileBase[] chairs;
     DijkstraOptimised pathFinder;
     Vector3Int goal;
+    Vector3Int start;
     public GridLayout gridLayout;
     Transform myTransform;
     public tileLocate locate;
@@ -29,6 +32,8 @@ public class CustomerBrain : MonoBehaviour
         myTransform = GetComponent<Transform>();
         pathFinder = GetComponent<DijkstraOptimised>();
         findChair();
+        start = gridLayout.WorldToCell(myTransform.position);
+        ID = generateID();
     }
 
     // Update is called once per frame
@@ -61,6 +66,7 @@ public class CustomerBrain : MonoBehaviour
         {
             eatTimer = 0;
             playerStats.addMoney(6);
+            leave();
         }
     }
 
@@ -104,12 +110,12 @@ public class CustomerBrain : MonoBehaviour
                 }
             }
         }
+        Debug.Log("Customer ID = " + randomID);
         return randomID;
     }
 
     void checkIfSitting()
     {
-        ID = generateID();
         if (movement.atGoal == true & chairFound == true)
         {
             sitting = true;
@@ -122,5 +128,12 @@ public class CustomerBrain : MonoBehaviour
     {
         movement.Start();
         pathFinder.startProcess(gridLayout.WorldToCell(myTransform.position), goal, true, false);
+    }
+
+    void leave()
+    {
+        Vector3Int goalHold = goal;
+        goal = start;
+        start = goalHold;
     }
 }
